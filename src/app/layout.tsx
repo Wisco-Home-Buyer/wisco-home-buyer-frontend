@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Marhey } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/store/Provider";
 import { Navbar } from "@/components/shared/layout/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const marhey = Marhey({
+  variable: "--font-marhey",
   subsets: ["latin"],
 });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${manrope.variable} ${marhey.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ReduxProvider>

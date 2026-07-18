@@ -26,7 +26,7 @@ export function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 leading-[1.1]">
             Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the Hassle.
           </h1>
 
