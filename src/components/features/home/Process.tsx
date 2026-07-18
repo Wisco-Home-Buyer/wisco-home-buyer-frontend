@@ -1,4 +1,4 @@
-import { Home, TrendingUp } from "lucide-react";
+import { ChartLine, Home } from "lucide-react";
 import { StepCard } from "@/components/shared/stepCard/StepCard";
 import { FaSackDollar } from "react-icons/fa6";
 
@@ -15,7 +15,7 @@ export function Process() {
     {
       imageSrc: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", // Interior window seat
       imageAlt: "Comfortable window seat interior",
-      icon: <TrendingUp className="h-5 w-5" />,
+      icon: <ChartLine className="h-5 w-5" />,
       title: "We Analyze Using Property Data",
       description: "Our team reviews comparable sales, property details, and local market trends to craft your personalized cash offer.",
       footer: "Data-driven analysis",
