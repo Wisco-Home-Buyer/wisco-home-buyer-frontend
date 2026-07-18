@@ -1,11 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { navItems } from "./navItems";
 
 export function Navbar() {
   return (
-    <header className="fixed top-0 z-50 w-full bg-linear-to-r from-white via-white/50 to-transparent">
+    <header className="fixed top-0 z-50 w-full bg-linear-to-r from-white via-transparent to-transparent border-b border-white-950">
       <div className="flex h-20 items-center justify-between px-4 md:px-16">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -32,9 +31,9 @@ export function Navbar() {
 
         {/* CTA Button */}
         <div className="flex items-center">
-          <Button className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-6 hidden sm:flex">
+          <button className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-4 py-2 hidden sm:flex">
             Get My FREE Cash Offer!
-          </Button>
+          </button>
         </div>
       </div>
     </header>

@@ -14,7 +14,7 @@ export function Hero() {
         }}
       >
         {/* Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-linear-to-r from-white via-white/85 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent"></div>
       </div>
 
       <div className=" relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">
@@ -27,8 +27,7 @@ export function Hero() {
 
           {/* Heading */}
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
-            Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the{" "}
-            <span className="text-blue-900">Hassle</span>.
+            Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the Hassle.
           </h1>
 
           {/* Subheading */}
