@@ -42,8 +42,8 @@ export function Process() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
             Three Simple Steps to Your Cash Offer
           </h2>
-          <p className="text-sm text-gray-600">
-            From inquiry to closing, we&apos;ve made the entire process transparent, fast, and hassle-free.
+          <p className="text-md text-gray-600">
+            From inquiry to closing, we&apos;ve made the entire process transparent, <br /> fast, and hassle-free.
           </p>
         </div>
 
