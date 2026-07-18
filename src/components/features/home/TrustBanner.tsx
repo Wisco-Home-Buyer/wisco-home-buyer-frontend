@@ -22,7 +22,7 @@ export function TrustBanner() {
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between text-center md:text-left gap-6 md:gap-0">
           {/* Tagline */}
           <div className="flex-1 md:pr-8">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#0A2F59] tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#0A2F59] tracking-tight font-marhey">
               Local. Trusted. Hassle - Free.
             </h2>
           </div>

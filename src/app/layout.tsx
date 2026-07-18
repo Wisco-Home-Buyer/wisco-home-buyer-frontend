@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Manrope, Marhey } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/store/Provider";
 import { Navbar } from "@/components/shared/layout/Navbar";
 
 const manrope = Manrope({
   variable: "--font-manrope",
+  subsets: ["latin"],
+});
+
+const marhey = Marhey({
+  variable: "--font-marhey",
   subsets: ["latin"],
 });
 
@@ -22,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} h-full antialiased`}
+      className={`${manrope.variable} ${marhey.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ReduxProvider>

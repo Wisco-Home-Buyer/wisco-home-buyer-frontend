@@ -69,7 +69,6 @@ export function Journey() {
           {/* Stepper Grid (Horizontal on Desktop, Vertical on Mobile) */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative z-10">
             {steps.map((step) => {
-              // Set conditional styles based on step status
               let circleStyles = "";
               let badgeStyles = "";
 
