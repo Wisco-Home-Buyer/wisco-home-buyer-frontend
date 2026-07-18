@@ -1,10 +1,37 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { navItems } from "./navItems";
+import { useEffect, useState } from "react";
 
 export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    // Check on mount in case page is already scrolled
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 z-50 w-full bg-linear-to-r from-white via-transparent to-transparent border-b border-white-950">
+    <header 
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled 
+          ? "bg-white/50 backdrop-blur-sm border-b border-gray-200/50 shadow-xs" 
+          : "bg-linear-to-r from-white via-transparent to-transparent border-b border-white"
+      }`}
+    >
       <div className="flex h-20 items-center justify-between px-4 md:px-16">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -39,3 +66,4 @@ export function Navbar() {
     </header>
   );
 }
+
