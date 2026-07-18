@@ -23,7 +23,7 @@ export function AdvantageCard({ icon, title, description, imageSrc }: AdvantageC
 
       {/* Left Content */}
       <div className="relative z-20 space-y-3 max-w-[60%]">
-        <div className="p-2.5 bg-blue-50 text-blue-900 rounded-xl w-fit">
+        <div className="p-2.5 bg-[#0A2F59] text-white rounded-xl w-fit">
           {icon}
         </div>
         <h3 className="text-lg font-bold text-gray-900 leading-snug">

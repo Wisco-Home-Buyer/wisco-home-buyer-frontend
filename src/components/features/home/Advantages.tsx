@@ -1,5 +1,7 @@
-import { Zap, Hammer, CircleDollarSign, BarChart2, Users, ShieldCheck } from "lucide-react";
+import { Zap, Hammer, Users } from "lucide-react";
 import { AdvantageCard } from "@/components/shared/advantageCard/AdvantageCard";
+import { CiCoinInsert } from "react-icons/ci";
+import { FaLock, FaRegChartBar } from "react-icons/fa6";
 
 export function Advantages() {
   const advantages = [
@@ -18,14 +20,14 @@ export function Advantages() {
       imageAlt: "Clean modern living room"
     },
     {
-      icon: <CircleDollarSign className="h-5 w-5" />,
+      icon: <CiCoinInsert className="h-5 w-5" />,
       title: "No Hidden Fees",
       description: "Zero commissions, zero closing costs, zero surprises. The offer you receive is exactly what you get.",
       imageSrc: "/images/image3.png",
       imageAlt: "Money jar with tag"
     },
     {
-      icon: <BarChart2 className="h-5 w-5" />,
+      icon: <FaRegChartBar className="h-5 w-5" />,
       title: "Fair Cash Offers",
       description: "Our offers are based on real market data, comparable property sales, and local expertise—always fair.",
       imageSrc: "/images/image4.png",
@@ -39,7 +41,7 @@ export function Advantages() {
       imageAlt: "Team of experts discussing"
     },
     {
-      icon: <ShieldCheck className="h-5 w-5" />,
+      icon: <FaLock  className="h-5 w-5" />,
       title: "Secure Process",
       description: "Fully licensed and insured. Your transaction is protected every step of the way.",
       imageSrc: "/images/image6.png",
