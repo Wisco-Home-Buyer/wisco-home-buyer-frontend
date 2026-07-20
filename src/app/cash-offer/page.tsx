@@ -53,7 +53,7 @@ export default function CashOfferPage() {
           </div>
 
           {/* Right Column: Confidential Card and Vertical Stepper */}
-          <div className="lg:col-span-5 bg-slate-50 border border-gray-100 rounded-3xl p-6 md:p-8 space-y-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+          <div className="lg:col-span-5 bg-slate-50 border border-gray-100 rounded-3xl p-6 md:p-8 space-y-8 shadow-md drop-shadow-xl">
             
             {/* Confidential Badge */}
             <div className="flex items-center gap-3.5 bg-white border border-gray-100 rounded-2xl p-4 shadow-xs">

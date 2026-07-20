@@ -78,10 +78,10 @@ export function Hero() {
 
           {/* Action Buttons */}
           <div className="hero-buttons flex flex-col sm:flex-row gap-4">
-            <Link href="/cash-offer">
+            <Link href="/cash-offer" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="bg-blue-950 hover:bg-blue-900 text-white px-8 h-12 text-base cursor-pointer"
+                className="w-full sm:w-auto bg-blue-950 hover:bg-blue-900 text-white px-8 h-12 text-base cursor-pointer"
               >
                 Get My FREE Cash Offer!
               </Button>
@@ -89,7 +89,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-12 px-8 text-base cursor-pointer"
+              className="w-full sm:w-auto border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-12 px-8 text-base cursor-pointer"
             >
               How It Works
             </Button>
