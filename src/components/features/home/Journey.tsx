@@ -46,7 +46,7 @@ export function Journey() {
   ];
 
   return (
-    <section className="bg-[#F8FAFC] py-20 md:py-28 overflow-hidden">
+    <section id="how-it-works" className="bg-[#F8FAFC] py-20 md:py-28 overflow-hidden">
       <div className="container mx-auto px-4 md:px-16 max-w-6xl">
         {/* Header */}
         <div className="text-center space-y-3 mb-16 md:mb-24 max-w-2xl mx-auto">
