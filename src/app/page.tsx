@@ -7,6 +7,7 @@ import { Journey } from "@/components/features/home/Journey";
 import { Impact } from "@/components/features/home/Impact";
 import { Testimonials } from "@/components/features/home/Testimonials";
 import { FAQ } from "@/components/features/home/FAQ";
+import { CTABanner } from "@/components/features/home/CTABanner";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Impact />
       <Testimonials />
       <FAQ />
+      <CTABanner />
     </div>
   );
 }
