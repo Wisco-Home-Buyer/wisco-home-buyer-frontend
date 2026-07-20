@@ -5,6 +5,8 @@ import { Advantages } from "@/components/features/home/Advantages";
 import { TrustBanner } from "@/components/features/home/TrustBanner";
 import { Journey } from "@/components/features/home/Journey";
 import { Impact } from "@/components/features/home/Impact";
+import { Testimonials } from "@/components/features/home/Testimonials";
+import { FAQ } from "@/components/features/home/FAQ";
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
       <TrustBanner />
       <Journey />
       <Impact />
+      <Testimonials />
+      <FAQ />
     </div>
   );
 }
