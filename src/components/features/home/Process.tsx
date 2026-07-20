@@ -1,8 +1,20 @@
+"use client";
+
+import React, { useRef } from "react";
 import { ChartLine, Home } from "lucide-react";
 import { StepCard } from "./_components/StepCard";
 import { FaSackDollar } from "react-icons/fa6";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Process() {
+  const container = useRef<HTMLDivElement>(null);
+
   const steps = [
     {
       imageSrc: "/images/processImage1.png", // Old house
@@ -31,11 +43,46 @@ export function Process() {
     }
   ];
 
+  useGSAP(() => {
+    // Header trigger animation
+    gsap.fromTo(
+      ".process-header",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: ".process-header",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Cards staggered entry on scroll
+    gsap.fromTo(
+      ".process-card-wrapper",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: ".process-grid",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }, { scope: container });
+
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section ref={container} id="how-it-works" className="bg-white py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-16">
         {/* Header */}
-        <div className="text-center space-y-3 mb-16 md:mb-20 max-w-2xl mx-auto">
+        <div className="process-header text-center space-y-3 mb-16 md:mb-20 max-w-2xl mx-auto">
           <span className="text-xs font-bold text-blue-900 uppercase tracking-widest block">
             Simple Process
           </span>
@@ -48,21 +95,23 @@ export function Process() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
+        <div className="process-grid grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
           {steps.map((step, index) => (
-            <StepCard
-              key={index}
-              imageSrc={step.imageSrc}
-              imageAlt={step.imageAlt}
-              icon={step.icon}
-              title={step.title}
-              description={step.description}
-              footer={step.footer}
-              isOffset={step.isOffset}
-            />
+            <div key={index} className="process-card-wrapper">
+              <StepCard
+                imageSrc={step.imageSrc}
+                imageAlt={step.imageAlt}
+                icon={step.icon}
+                title={step.title}
+                description={step.description}
+                footer={step.footer}
+                isOffset={step.isOffset}
+              />
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
