@@ -128,5 +128,12 @@
   html {
     scroll-behavior: smooth;
     @apply font-sans;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+  }
+  
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
 }

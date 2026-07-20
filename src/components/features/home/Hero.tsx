@@ -18,7 +18,7 @@ export function Hero() {
       </div>
 
       <div className=" relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">
-        <div className="max-w-2xl space-y-8">
+        <div className="max-w-4xl space-y-8">
           {/* Top Badge */}
           <div className="inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
             <span className="mr-2 h-2 w-2 rounded-full bg-gray-500"></span>
@@ -26,7 +26,7 @@ export function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 leading-[1.1]">
+          <h1 className="text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1]">
             Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the Hassle.
           </h1>
 
