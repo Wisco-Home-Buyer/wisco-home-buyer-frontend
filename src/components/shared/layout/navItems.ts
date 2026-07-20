@@ -6,18 +6,18 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   {
     label: "How It Works",
-    href: "#how-it-works",
+    href: "/#how-it-works",
   },
   {
     label: "Why Us",
-    href: "#why-us",
+    href: "/#why-us",
   },
   {
     label: "Testimonials",
-    href: "#testimonials",
+    href: "/#testimonials",
   },
   {
     label: "FAQ",
-    href: "#faq",
+    href: "/#faq",
   },
 ];

@@ -1,60 +1,102 @@
+"use client";
+
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, Award, Home, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Hero() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    // 1. Animate background image immediately on load
+    gsap.fromTo(
+      ".hero-bg-img",
+      { scale: 1.15, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 2.2, ease: "power2.out" }
+    );
+
+    // 2. Animate content timeline immediately on load
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    tl.fromTo(
+      [
+        ".hero-badge",
+        ".hero-heading",
+        ".hero-subheading",
+        ".hero-buttons",
+        ".hero-trust",
+        ".hero-badges",
+      ],
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, delay: 0.1 }
+    );
+  }, { scope: container });
+
+
+
   return (
-    <section className="relative w-full min-h-screen flex items-center">
+    <section ref={container} className="relative w-full min-h-screen flex items-center">
+      {/* Background Image Container */}
       <div
-        className="absolute inset-0 z-0 bg-gray-200"
+        className="hero-bg-img absolute inset-0 z-0 bg-gray-200"
         style={{
           backgroundImage: "url('/images/bannerImage.png')",
           backgroundSize: "100% 100%",
           backgroundPosition: "center",
         }}
       >
-        {/* Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent"></div>
+        {/* Gradient Overlay for Text Readability - Responsive Wash */}
+        <div className="absolute inset-0 bg-linear-to-b from-white/95 via-white/80 to-white/70 md:bg-linear-to-r lg:from-white lg:via-transparent lg:to-transparent"></div>
       </div>
 
-      <div className=" relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">
-        <div className="max-w-2xl space-y-8">
+      <div className="relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">
+        <div className="max-w-4xl space-y-8">
           {/* Top Badge */}
-          <div className="inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
+          <div className="hero-badge inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
             <span className="mr-2 h-2 w-2 rounded-full bg-gray-500"></span>
             Wisconsin&apos;s Cash Home Buyer
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 leading-[1.1]">
+          <h1 className="hero-heading text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1]">
             Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the Hassle.
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg text-gray-700 max-w-lg">
+          <p className="hero-subheading text-lg text-gray-700 max-w-lg">
             Skip the agents, skip the repairs. Wisco Home Buyer gives you a fair
             cash offer in 24 hours — close in as little as 7 days.
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button
-              size="lg"
-              className="bg-blue-950 hover:bg-blue-900 text-white px-8 h-12 text-base"
-            >
-              Get My FREE Cash Offer!
-            </Button>
+          <div className="hero-buttons flex flex-col sm:flex-row gap-4">
+            <Link href="/cash-offer" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-blue-950 hover:bg-blue-900 text-white px-8 h-12 text-base cursor-pointer"
+              >
+                Get My FREE Cash Offer!
+              </Button>
+            </Link>
             <Button
               size="lg"
               variant="outline"
-              className="border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-12 px-8 text-base"
+              className="w-full sm:w-auto border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-12 px-8 text-base cursor-pointer"
             >
               How It Works
             </Button>
           </div>
 
           {/* Trust Rating Section */}
-          <div className="flex items-center gap-4 pt-4">
+          <div className="hero-trust flex items-center gap-4 pt-4">
             <div className="flex -space-x-3">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div
@@ -84,7 +126,7 @@ export function Hero() {
           </div>
 
           {/* Bottom Trust Badges */}
-          <div className="flex flex-wrap gap-3 pt-6">
+          <div className="hero-badges flex flex-wrap gap-3 pt-6">
             <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-gray-700 shadow-sm border border-gray-100">
               <ShieldCheck className="h-4 w-4 text-blue-900" />
               Licensed & Insured
@@ -103,3 +145,4 @@ export function Hero() {
     </section>
   );
 }
+
