@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReduxProvider } from "@/store/Provider";
 import { Navbar } from "@/components/shared/layout/Navbar";
 import { Footer } from "@/components/shared/layout/Footer";
+import { SmoothScroll } from "@/components/shared/layout/SmoothScroll";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -32,14 +33,17 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ReduxProvider>
-          <Navbar />
-          <main className="flex-1 flex flex-col">
-            {children}
-          </main>
-          <Footer />
+          <SmoothScroll>
+            <Navbar />
+            <main className="flex-1 flex flex-col">
+              {children}
+            </main>
+            <Footer />
+          </SmoothScroll>
         </ReduxProvider>
       </body>
     </html>
   );
 }
+
 
