@@ -66,8 +66,8 @@ export function Hero() {
           backgroundPosition: "center",
         }}
       >
-        {/* Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent"></div>
+        {/* Gradient Overlay for Text Readability - Responsive Wash */}
+        <div className="absolute inset-0 bg-linear-to-b from-white/95 via-white/80 to-white/70 md:bg-linear-to-r lg:from-white lg:via-transparent lg:to-transparent"></div>
       </div>
 
       <div className="relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">

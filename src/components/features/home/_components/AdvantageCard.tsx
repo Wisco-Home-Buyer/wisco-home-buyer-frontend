@@ -10,7 +10,7 @@ export interface AdvantageCardProps {
 
 export function AdvantageCard({ icon, title, description, imageSrc }: AdvantageCardProps) {
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col justify-center shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden relative min-h-48">
+    <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col justify-center shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden relative min-h-48 h-full">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center"

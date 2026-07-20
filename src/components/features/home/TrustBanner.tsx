@@ -62,7 +62,7 @@ export function TrustBanner() {
       <div className="container relative z-10 mx-auto px-4 md:px-16 max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between text-center md:text-left gap-6 md:gap-0">
           {/* Tagline */}
-          <div className="trust-tagline flex-1 md:pr-8">
+          <div className="trust-tagline flex-1 lg:pr-8">
             <h2 className="text-2xl md:text-3xl font-semibold text-[#0A2F59] tracking-tight font-marhey">
               Local. Trusted. Hassle - Free.
             </h2>
@@ -72,7 +72,7 @@ export function TrustBanner() {
           <div className="trust-divider hidden md:block w-px h-12 bg-gray-200 mx-8" />
 
           {/* Description */}
-          <div className="trust-desc flex-1 md:pl-8 max-w-md">
+          <div className="trust-desc flex-1 lg:pl-8 lg:max-w-md">
             <p className="text-sm md:text-base text-gray-500 leading-relaxed font-medium">
               We make selling your home simple, so you can move forward with confidence.
             </p>

@@ -95,7 +95,7 @@ export function Process() {
         </div>
 
         {/* Cards Grid */}
-        <div className="process-grid grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
+        <div className="process-grid grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-6">
           {steps.map((step, index) => (
             <div key={index} className="process-card-wrapper">
               <StepCard
