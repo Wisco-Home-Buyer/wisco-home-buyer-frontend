@@ -35,7 +35,16 @@ export function Navbar() {
       <div className="flex h-20 items-center justify-between px-4 md:px-16">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center">
+          <Link 
+            href="/" 
+            className="flex items-center"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <Image
               src="/images/logo.png"
               alt="Wisco Home Buyer Logo"
