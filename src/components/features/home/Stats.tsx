@@ -1,5 +1,5 @@
 import { Star, Briefcase, Home, Calendar } from "lucide-react";
-import { StatCard } from "@/components/shared/statCard/StatCard";
+import { StatCard } from "./_components/StatCard";
 
 export function Stats() {
   const statsData = [
