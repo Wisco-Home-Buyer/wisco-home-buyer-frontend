@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface FAQItem {
   question: string;
@@ -10,6 +17,7 @@ interface FAQItem {
 }
 
 export function FAQ() {
+  const container = useRef<HTMLDivElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqData: FAQItem[] = [
@@ -49,14 +57,54 @@ export function FAQ() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  useGSAP(() => {
+    // Header trigger animation
+    gsap.fromTo(
+      ".faq-header",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: ".faq-header",
+          start: "top 85%",
+          toggleActions: "play none none reset",
+        },
+      }
+    );
+
+    // Grid content animations on scroll
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".faq-grid",
+        start: "top 80%",
+        toggleActions: "play none none reset",
+      }
+    });
+
+    tl.fromTo(
+      ".faq-image-wrapper",
+      { opacity: 0, x: -50 },
+      { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" }
+    )
+    .fromTo(
+      ".faq-accordion-wrapper",
+      { opacity: 0, x: 50 },
+      { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
+      "-=0.6"
+    );
+  }, { scope: container });
+
   return (
     <section
+      ref={container}
       id="faq"
       className="bg-white py-16 md:py-24 border-b border-gray-100/50"
     >
       <div className="px-4 md:px-16">
         {/* Header */}
-        <div className="text-center space-y-3 mb-12 md:mb-16 max-w-2xl mx-auto">
+        <div className="faq-header text-center space-y-3 mb-12 md:mb-16 max-w-2xl mx-auto">
           <span className="text-sm font-semibold text-blue-900 uppercase tracking-widest block">
             Got Questions?
           </span>
@@ -70,9 +118,9 @@ export function FAQ() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="faq-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left Column: Image */}
-          <div className="relative w-full h-80 md:h-112.5 lg:h-full rounded-3xl overflow-hidden shadow-md">
+          <div className="faq-image-wrapper relative w-full h-80 md:h-112.5 lg:h-full rounded-3xl overflow-hidden shadow-md">
             <Image
               src="/images/FAQImage.png"
               alt="Beautiful Mediterranean style home with warm lighting"
@@ -84,7 +132,7 @@ export function FAQ() {
           </div>
 
           {/* Right Column: Accordion */}
-          <div className="bg-white border border-gray-100 rounded-3xl shadow-[0_10px_35px_rgba(0,0,0,0.03)] overflow-hidden">
+          <div className="faq-accordion-wrapper bg-white border border-gray-100 rounded-3xl shadow-[0_10px_35px_rgba(0,0,0,0.03)] overflow-hidden">
             {faqData.map((item, index) => {
               const isOpen = openIndex === index;
               return (
@@ -135,3 +183,4 @@ export function FAQ() {
     </section>
   );
 }
+

@@ -5,7 +5,12 @@ import { Button } from "@/components/ui/button";
 import { ShieldCheck, Award, Home, Star } from "lucide-react";
 import Image from "next/image";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Hero() {
   const container = useRef<HTMLDivElement>(null);
@@ -14,10 +19,27 @@ export function Hero() {
     gsap.fromTo(
       ".hero-bg-img",
       { scale: 1.15, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 2.2, ease: "power2.out" }
+      { 
+        scale: 1, 
+        opacity: 1, 
+        duration: 2.2, 
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top top",
+          toggleActions: "play none none none",
+        }
+      }
     );
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      }
+    });
+
     tl.fromTo(
       [
         ".hero-badge",
@@ -28,9 +50,10 @@ export function Hero() {
         ".hero-badges",
       ],
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, delay: 0.1 }
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }
     );
   }, { scope: container });
+
 
   return (
     <section ref={container} className="relative w-full min-h-screen flex items-center">

@@ -1,3 +1,14 @@
+"use client";
+
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 interface JourneyStep {
   number: number;
   title: string;
@@ -7,6 +18,8 @@ interface JourneyStep {
 }
 
 export function Journey() {
+  const container = useRef<HTMLDivElement>(null);
+
   const steps: JourneyStep[] = [
     {
       number: 1,
@@ -45,11 +58,50 @@ export function Journey() {
     },
   ];
 
+  useGSAP(() => {
+    // Header trigger
+    gsap.fromTo(
+      ".journey-header",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: ".journey-header",
+          start: "top 85%",
+          toggleActions: "play none none reset",
+        },
+      }
+    );
+
+    // Timeline line & steps sequence trigger
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".journey-timeline-container",
+        start: "top 80%",
+        toggleActions: "play none none reset",
+      }
+    });
+
+    tl.fromTo(
+      ".journey-line",
+      { scaleX: 0 },
+      { scaleX: 1, duration: 0.8, ease: "power2.inOut" }
+    )
+    .fromTo(
+      ".journey-step-wrapper",
+      { opacity: 0, scale: 0.85, y: 20 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.15, ease: "back.out(1.7)" },
+      "-=0.4"
+    );
+  }, { scope: container });
+
   return (
-    <section id="how-it-works" className="bg-[#F8FAFC] py-20 md:py-28 overflow-hidden">
+    <section ref={container} id="how-it-works" className="bg-[#F8FAFC] py-20 md:py-28 overflow-hidden">
       <div className="container mx-auto px-4 md:px-16 max-w-6xl">
         {/* Header */}
-        <div className="text-center space-y-3 mb-16 md:mb-24 max-w-2xl mx-auto">
+        <div className="journey-header text-center space-y-3 mb-16 md:mb-24 max-w-2xl mx-auto">
           <span className="text-xs font-bold text-blue-900 uppercase tracking-widest block">
             The Journey
           </span>
@@ -62,9 +114,12 @@ export function Journey() {
         </div>
 
         {/* Stepper Container */}
-        <div className="relative">
+        <div className="journey-timeline-container relative">
           {/* Desktop Connecting Line */}
-          <div className="hidden md:block absolute top-6 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-gray-200 z-0" />
+          <div 
+            className="journey-line hidden md:block absolute top-6 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-gray-200 z-0"
+            style={{ transformOrigin: "left center" }}
+          />
 
           {/* Stepper Grid (Horizontal on Desktop, Vertical on Mobile) */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative z-10">
@@ -84,7 +139,7 @@ export function Journey() {
               }
 
               return (
-                <div key={step.number} className="flex flex-row md:flex-col items-center md:text-center gap-4 md:gap-0">
+                <div key={step.number} className="journey-step-wrapper flex flex-row md:flex-col items-center md:text-center gap-4 md:gap-0">
                   {/* Step Number Circle */}
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold shrink-0 z-10 transition-all duration-300 ${circleStyles}`}>
                     {step.number}
@@ -113,3 +168,4 @@ export function Journey() {
     </section>
   );
 }
+

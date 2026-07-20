@@ -49,7 +49,7 @@ export function Stats() {
         scrollTrigger: {
           trigger: ".stats-header",
           start: "top 85%",
-          toggleActions: "play none none none",
+          toggleActions: "play none none reset",
         },
       }
     );
@@ -66,7 +66,7 @@ export function Stats() {
         scrollTrigger: {
           trigger: ".stats-grid",
           start: "top 85%",
-          toggleActions: "play none none none",
+          toggleActions: "play none none reset",
         },
       }
     );

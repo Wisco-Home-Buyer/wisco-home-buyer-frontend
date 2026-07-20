@@ -55,7 +55,7 @@ export function Process() {
         scrollTrigger: {
           trigger: ".process-header",
           start: "top 85%",
-          toggleActions: "play none none none",
+          toggleActions: "play none none reset",
         },
       }
     );
@@ -72,7 +72,7 @@ export function Process() {
         scrollTrigger: {
           trigger: ".process-grid",
           start: "top 80%",
-          toggleActions: "play none none none",
+          toggleActions: "play none none reset",
         },
       }
     );

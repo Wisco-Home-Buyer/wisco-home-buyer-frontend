@@ -1,9 +1,21 @@
+"use client";
+
+import React, { useRef } from "react";
 import { Zap, Hammer, Users } from "lucide-react";
 import { AdvantageCard } from "./_components/AdvantageCard";
 import { CiCoinInsert } from "react-icons/ci";
 import { FaLock, FaRegChartBar } from "react-icons/fa6";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Advantages() {
+  const container = useRef<HTMLDivElement>(null);
+
   const advantages = [
     {
       icon: <Zap className="h-5 w-5" />,
@@ -49,11 +61,46 @@ export function Advantages() {
     }
   ];
 
+  useGSAP(() => {
+    // Header trigger animation
+    gsap.fromTo(
+      ".adv-header",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: ".adv-header",
+          start: "top 85%",
+          toggleActions: "play none none reset",
+        },
+      }
+    );
+
+    // Cards staggered entry on scroll
+    gsap.fromTo(
+      ".adv-card-wrapper",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: ".adv-grid",
+          start: "top 80%",
+          toggleActions: "play none none reset",
+        },
+      }
+    );
+  }, { scope: container });
+
   return (
-    <section id="why-us" className="bg-slate-50/50 py-20 md:py-28">
+    <section ref={container} id="why-us" className="bg-slate-50/50 py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-16">
         {/* Header */}
-        <div className="text-center space-y-3 mb-16 md:mb-20 max-w-4xl mx-auto">
+        <div className="adv-header text-center space-y-3 mb-16 md:mb-20 max-w-4xl mx-auto">
           <span className="text-xs font-bold text-blue-900 uppercase tracking-widest block">
             Our Advantage
           </span>
@@ -66,19 +113,21 @@ export function Advantages() {
         </div>
 
         {/* Grid of Advantages */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="adv-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {advantages.map((adv, index) => (
-            <AdvantageCard
-              key={index}
-              icon={adv.icon}
-              title={adv.title}
-              description={adv.description}
-              imageSrc={adv.imageSrc}
-              imageAlt={adv.imageAlt}
-            />
+            <div key={index} className="adv-card-wrapper">
+              <AdvantageCard
+                icon={adv.icon}
+                title={adv.title}
+                description={adv.description}
+                imageSrc={adv.imageSrc}
+                imageAlt={adv.imageAlt}
+              />
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
