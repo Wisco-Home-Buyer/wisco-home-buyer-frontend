@@ -16,30 +16,15 @@ export function Hero() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    // 1. Animate background image immediately on load
     gsap.fromTo(
       ".hero-bg-img",
       { scale: 1.15, opacity: 0 },
-      { 
-        scale: 1, 
-        opacity: 1, 
-        duration: 2.2, 
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top top",
-          toggleActions: "play none none none",
-        }
-      }
+      { scale: 1, opacity: 1, duration: 2.2, ease: "power2.out" }
     );
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      }
-    });
-
+    // 2. Animate content timeline immediately on load
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     tl.fromTo(
       [
         ".hero-badge",
@@ -50,9 +35,10 @@ export function Hero() {
         ".hero-badges",
       ],
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, delay: 0.1 }
     );
   }, { scope: container });
+
 
 
   return (
