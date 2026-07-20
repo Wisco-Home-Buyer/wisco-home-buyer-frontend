@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Zap } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -88,9 +89,12 @@ export function CTABanner() {
         </p>
 
         <div className="cta-btn pt-4">
-          <button className="bg-[#4B6983] hover:bg-[#3f5c75] active:scale-95 text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer">
+          <Link 
+            href="/cash-offer" 
+            className="inline-block bg-[#4B6983] hover:bg-[#3f5c75] active:scale-95 text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+          >
             Get My FREE Cash Offer!
-          </button>
+          </Link>
         </div>
 
         <span className="cta-footer text-xxs md:text-xs text-[#BECADA] font-medium tracking-wide block pt-2">

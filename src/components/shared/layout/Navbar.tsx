@@ -5,10 +5,15 @@ import Image from "next/image";
 import { navItems } from "./navItems";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const isHomepage = pathname === "/";
+  const showSolidNavbar = !isHomepage || isScrolled || isOpen;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +34,7 @@ export function Navbar() {
   return (
     <header 
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled || isOpen
+        showSolidNavbar
           ? "bg-white border-b border-gray-200/50 shadow-xs" 
           : "bg-linear-to-r from-white via-transparent to-transparent border-b border-white"
       }`}
@@ -72,9 +77,9 @@ export function Navbar() {
         {/* Action Buttons & Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
           {/* CTA Button - Desktop */}
-          <button className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-4 py-2 hidden lg:flex cursor-pointer text-sm font-medium transition-colors">
+          <Link href="/cash-offer" className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-4 py-2 hidden lg:flex cursor-pointer text-sm font-medium transition-colors">
             Get My FREE Cash Offer!
-          </button>
+          </Link>
 
           {/* Mobile Hamburger Button */}
           <button 
@@ -109,12 +114,13 @@ export function Navbar() {
             ))}
           </nav>
           
-          <button 
+          <Link 
+            href="/cash-offer"
             onClick={() => setIsOpen(false)}
-            className="w-full bg-blue-950 hover:bg-blue-900 text-white rounded-lg py-3 text-base font-bold transition-colors shadow-md cursor-pointer"
+            className="w-full bg-blue-950 hover:bg-blue-900 text-white rounded-lg py-3 text-base font-bold transition-colors shadow-md cursor-pointer text-center"
           >
             Get My FREE Cash Offer!
-          </button>
+          </Link>
         </div>
       </div>
     </header>

@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, Award, Home, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -77,12 +78,14 @@ export function Hero() {
 
           {/* Action Buttons */}
           <div className="hero-buttons flex flex-col sm:flex-row gap-4">
-            <Button
-              size="lg"
-              className="bg-blue-950 hover:bg-blue-900 text-white px-8 h-12 text-base cursor-pointer"
-            >
-              Get My FREE Cash Offer!
-            </Button>
+            <Link href="/cash-offer">
+              <Button
+                size="lg"
+                className="bg-blue-950 hover:bg-blue-900 text-white px-8 h-12 text-base cursor-pointer"
+              >
+                Get My FREE Cash Offer!
+              </Button>
+            </Link>
             <Button
               size="lg"
               variant="outline"
