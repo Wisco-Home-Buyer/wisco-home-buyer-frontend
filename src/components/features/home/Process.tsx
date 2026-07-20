@@ -5,7 +5,7 @@ import { FaSackDollar } from "react-icons/fa6";
 export function Process() {
   const steps = [
     {
-      imageSrc: "https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", // Old house
+      imageSrc: "/images/processImage1.png", // Old house
       imageAlt: "Old house in need of repair",
       icon: <Home className="h-5 w-5" />,
       title: "Submit Your Property - No Matter The Condition!",
@@ -13,7 +13,7 @@ export function Process() {
       footer: "2-min form"
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", // Interior window seat
+      imageSrc: "/images/processImage2.png", // Interior window seat
       imageAlt: "Comfortable window seat interior",
       icon: <ChartLine className="h-5 w-5" />,
       title: "We Analyze Using Property Data",
@@ -22,7 +22,7 @@ export function Process() {
       isOffset: true
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", // Business handshake
+      imageSrc: "/images/processImage3.png", // Business handshake
       imageAlt: "Handshake after deal closing",
       icon: <FaSackDollar className="h-5 w-5" />,
       title: "Receive Your Fair Cash Offer",

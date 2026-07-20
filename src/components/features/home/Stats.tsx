@@ -1,7 +1,19 @@
+"use client";
+
+import React, { useRef } from "react";
 import { Star, Briefcase, Home, Calendar } from "lucide-react";
 import { StatCard } from "./_components/StatCard";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Stats() {
+  const container = useRef<HTMLDivElement>(null);
+
   const statsData = [
     {
       icon: <Star className="h-6 w-6 fill-current" />,
@@ -25,11 +37,46 @@ export function Stats() {
     },
   ];
 
+  useGSAP(() => {
+    // Animate Header on scroll
+    gsap.fromTo(
+      ".stats-header",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: ".stats-header",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // Animate Grid Cards on scroll
+    gsap.fromTo(
+      ".stats-card-wrapper",
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: ".stats-grid",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  }, { scope: container });
+
   return (
-    <section className="bg-slate-50/50 py-16 md:py-24">
+    <section ref={container} className="bg-slate-50/50 py-16 md:py-24">
       <div className="px-4 md:px-16">
         {/* Header */}
-        <div className="text-center space-y-3 mb-12 md:mb-16">
+        <div className="stats-header text-center space-y-3 mb-12 md:mb-16">
           <span className="text-xs font-bold text-blue-900 uppercase tracking-widest block">
             Proven Results
           </span>
@@ -39,17 +86,19 @@ export function Stats() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="stats-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {statsData.map((stat, index) => (
-            <StatCard
-              key={index}
-              icon={stat.icon}
-              value={stat.value}
-              label={stat.label}
-            />
+            <div key={index} className="stats-card-wrapper">
+              <StatCard
+                icon={stat.icon}
+                value={stat.value}
+                label={stat.label}
+              />
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
