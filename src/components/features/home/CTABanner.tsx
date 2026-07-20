@@ -88,7 +88,7 @@ export function CTABanner() {
         </p>
 
         <div className="cta-btn pt-4">
-          <button className="bg-[#4B6983] hover:bg-blue-500 active:scale-95 text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer">
+          <button className="bg-[#4B6983] hover:bg-[#3f5c75] active:scale-95 text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer">
             Get My FREE Cash Offer!
           </button>
         </div>

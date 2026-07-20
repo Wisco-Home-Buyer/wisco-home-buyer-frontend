@@ -68,7 +68,7 @@ export function Navbar() {
 
         {/* CTA Button */}
         <div className="flex items-center">
-          <button className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-4 py-2 hidden sm:flex">
+          <button className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-4 py-2 hidden sm:flex cursor-pointer">
             Get My FREE Cash Offer!
           </button>
         </div>
