@@ -1,5 +1,5 @@
 import { ChartLine, Home } from "lucide-react";
-import { StepCard } from "@/components/shared/stepCard/StepCard";
+import { StepCard } from "./_components/StepCard";
 import { FaSackDollar } from "react-icons/fa6";
 
 export function Process() {

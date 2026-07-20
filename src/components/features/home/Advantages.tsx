@@ -1,5 +1,5 @@
 import { Zap, Hammer, Users } from "lucide-react";
-import { AdvantageCard } from "@/components/shared/advantageCard/AdvantageCard";
+import { AdvantageCard } from "./_components/AdvantageCard";
 import { CiCoinInsert } from "react-icons/ci";
 import { FaLock, FaRegChartBar } from "react-icons/fa6";
 

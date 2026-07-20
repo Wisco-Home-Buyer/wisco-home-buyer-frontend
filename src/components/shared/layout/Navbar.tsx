@@ -42,6 +42,7 @@ export function Navbar() {
               width={130}
               height={120}
               priority
+              unoptimized
               className="object-contain"
             />
           </Link>
