@@ -3,6 +3,7 @@ import { Manrope, Marhey } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/store/Provider";
 import { Navbar } from "@/components/shared/layout/Navbar";
+import { Footer } from "@/components/shared/layout/Footer";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -35,8 +36,10 @@ export default function RootLayout({
           <main className="flex-1 flex flex-col">
             {children}
           </main>
+          <Footer />
         </ReduxProvider>
       </body>
     </html>
   );
 }
+
