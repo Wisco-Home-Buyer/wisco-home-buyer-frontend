@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Step1Address } from "./_components/Step1Address";
 import { Step2Contact } from "./_components/Step2Contact";
 import { Step3Details } from "./_components/Step3Details";
@@ -11,6 +11,7 @@ import { Step7UploadQuery } from "./_components/Step7UploadQuery";
 import { Step7UploadImages } from "./_components/Step7UploadImages";
 import { Step8Review } from "./_components/Step8Review";
 import { SuccessSubmitted } from "./_components/SuccessSubmitted";
+import { Loading } from "@/components/shared/loading/Loading";
 
 export default function FormPage() {
   const [step, setStep] = useState(1);
@@ -33,7 +34,7 @@ export default function FormPage() {
       bathrooms: "" as number | string,
       squareFeet: "" as number | string,
       yearBuilt: "" as number | string,
-      lotSizeAcres: 0.15,
+      lotSizeAcres: "" as number | string,
     },
     condition: {
       roofCondition: "GOOD",
@@ -46,6 +47,36 @@ export default function FormPage() {
     timeline: "IMMEDIATELY",
     imageUrls: [] as string[],
   });
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadSavedData = () => {
+      const savedData = localStorage.getItem("tygry8-form-data");
+      if (savedData) {
+        try {
+          const parsed = JSON.parse(savedData);
+          if (parsed.step) setStep(parsed.step);
+          if (parsed.hasImages !== undefined) setHasImages(parsed.hasImages);
+          if (parsed.formData) setFormData(parsed.formData);
+        } catch (e) {
+          console.error("Error parsing local storage", e);
+        }
+      }
+      setIsLoaded(true);
+    };
+
+    loadSavedData();
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem(
+        "tygry8-form-data",
+        JSON.stringify({ step, hasImages, formData })
+      );
+    }
+  }, [step, hasImages, formData, isLoaded]);
 
   const updateField = <K extends keyof typeof formData>(
     section: K,
@@ -112,6 +143,7 @@ export default function FormPage() {
 
     console.log("Submitted Form Data (JSON Payload):", submissionPayload);
     setIsSubmitted(true);
+    localStorage.removeItem("tygry8-form-data");
   };
 
   const getStepTitle = () => {
@@ -119,7 +151,7 @@ export default function FormPage() {
       case 1:
         return "Property Address";
       case 2:
-        return "Your Information";
+        return "Information";
       case 3:
         return "Property Details";
       case 4:
@@ -138,11 +170,10 @@ export default function FormPage() {
     }
   };
 
-  // Convert internal step (1 to 9) to user-facing step (1 to 8)
   const getDisplayStep = () => {
     if (step <= 7) return step;
-    if (step === 8) return 7; // images upload shows step 7 of 8
-    return 8; // review shows step 8 of 8
+    if (step === 8) return 7; 
+    return 8; 
   };
 
   const renderStep = () => {
@@ -236,6 +267,10 @@ export default function FormPage() {
         return null;
     }
   };
+
+  if (!isLoaded) {
+    return <Loading fullScreen />;
+  }
 
   if (isSubmitted) {
     return (
