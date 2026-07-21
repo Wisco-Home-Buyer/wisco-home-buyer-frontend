@@ -10,7 +10,12 @@ interface Step6TimelineProps {
   onBack: () => void;
 }
 
-export function Step6Timeline({ value, onChange, onNext, onBack }: Step6TimelineProps) {
+export function Step6Timeline({
+  value,
+  onChange,
+  onNext,
+  onBack,
+}: Step6TimelineProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (value) {

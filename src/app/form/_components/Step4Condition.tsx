@@ -16,7 +16,12 @@ interface Step4ConditionProps {
   onBack: () => void;
 }
 
-export function Step4Condition({ formData, updateFormData, onNext, onBack }: Step4ConditionProps) {
+export function Step4Condition({
+  formData,
+  updateFormData,
+  onNext,
+  onBack,
+}: Step4ConditionProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onNext();
@@ -59,7 +64,9 @@ export function Step4Condition({ formData, updateFormData, onNext, onBack }: Ste
                   <button
                     key={option.value}
                     type="button"
-                    onClick={() => updateFormData({ [section.key]: option.value })}
+                    onClick={() =>
+                      updateFormData({ [section.key]: option.value })
+                    }
                     className={`py-3 px-4 text-xs md:text-sm font-semibold rounded-xl border text-center transition-all cursor-pointer ${
                       isSelected
                         ? "bg-blue-950 border-blue-950 text-white shadow-2xs"
@@ -76,14 +83,19 @@ export function Step4Condition({ formData, updateFormData, onNext, onBack }: Ste
 
         {/* Other Repairs Needed */}
         <div className="space-y-1.5 pt-2">
-          <label htmlFor="otherRepairs" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+          <label
+            htmlFor="otherRepairs"
+            className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+          >
             Other Repairs Needed (Optional)
           </label>
           <input
             id="otherRepairs"
             type="text"
             value={formData.otherRepairsNeeded}
-            onChange={(e) => updateFormData({ otherRepairsNeeded: e.target.value })}
+            onChange={(e) =>
+              updateFormData({ otherRepairsNeeded: e.target.value })
+            }
             placeholder="e.g. HVAC needs replacement"
             className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
           />

@@ -14,7 +14,11 @@ interface Step1AddressProps {
   onNext: () => void;
 }
 
-export function Step1Address({ formData, updateFormData, onNext }: Step1AddressProps) {
+export function Step1Address({
+  formData,
+  updateFormData,
+  onNext,
+}: Step1AddressProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.streetAddress.trim()) {
@@ -36,7 +40,10 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
       <div className="space-y-4">
         {/* Street Address */}
         <div className="space-y-1.5">
-          <label htmlFor="streetAddress" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+          <label
+            htmlFor="streetAddress"
+            className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+          >
             Street Address
           </label>
           <input
@@ -53,7 +60,10 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
         {/* City, State and Zip Code */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="space-y-1.5">
-            <label htmlFor="city" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+            <label
+              htmlFor="city"
+              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+            >
               City
             </label>
             <input
@@ -68,7 +78,10 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="state" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+            <label
+              htmlFor="state"
+              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+            >
               State
             </label>
             <input
@@ -83,7 +96,10 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="zipCode" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+            <label
+              htmlFor="zipCode"
+              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+            >
               ZIP Code
             </label>
             <input

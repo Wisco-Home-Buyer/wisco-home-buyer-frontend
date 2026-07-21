@@ -11,7 +11,12 @@ interface Step7UploadImagesProps {
   onBack: () => void;
 }
 
-export function Step7UploadImages({ imageUrls, onChange, onNext, onBack }: Step7UploadImagesProps) {
+export function Step7UploadImages({
+  imageUrls,
+  onChange,
+  onNext,
+  onBack,
+}: Step7UploadImagesProps) {
   const [mockImages, setMockImages] = useState<string[]>([
     "/images/image1.png",
     "/images/image2.png",
@@ -41,7 +46,9 @@ export function Step7UploadImages({ imageUrls, onChange, onNext, onBack }: Step7
           <UploadCloud className="h-6 w-6 text-blue-900" />
         </div>
         <div className="text-center">
-          <p className="text-sm font-bold text-[#0B2545]">Drag & drop photos here</p>
+          <p className="text-sm font-bold text-[#0B2545]">
+            Drag & drop photos here
+          </p>
           <p className="text-xs text-gray-400 font-semibold mt-0.5">or</p>
         </div>
         <button
@@ -56,7 +63,10 @@ export function Step7UploadImages({ imageUrls, onChange, onNext, onBack }: Step7
       {/* Thumbnails Section */}
       <div className="grid grid-cols-3 gap-3">
         {mockImages.map((src, i) => (
-          <div key={i} className="relative aspect-video rounded-xl overflow-hidden border border-gray-150 shadow-2xs">
+          <div
+            key={i}
+            className="relative aspect-video rounded-xl overflow-hidden border border-gray-150 shadow-2xs"
+          >
             <Image
               src={src}
               alt={`Property thumbnail ${i + 1}`}

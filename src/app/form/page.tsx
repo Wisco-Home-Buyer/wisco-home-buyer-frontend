@@ -99,10 +99,12 @@ export default function FormPage() {
       if (hasImages) {
         setStep(8);
       } else {
-        setStep(7);
+        setStep(6);
       }
     } else if (step === 8) {
-      setStep(7);
+      setStep(6);
+    } else if (step === 7) {
+      setStep(6);
     } else if (step > 1) {
       setStep((prev) => prev - 1);
     }
