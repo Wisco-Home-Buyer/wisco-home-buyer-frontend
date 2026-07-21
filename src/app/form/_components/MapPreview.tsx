@@ -40,7 +40,7 @@ function MapEvents({ onChange, setPosition }: { onChange: MapPreviewProps["onCha
         if (data && data.address) {
           onChange({
             streetAddress: data.address.house_number ? `${data.address.house_number} ${data.address.road || ''}`.trim() : (data.address.road || ''),
-            city: data.address.city || data.address.town || data.address.village || '',
+            city: data.address.city || data.address.town || data.address.village || data.address.suburb || data.address.county || data.address.municipality || '',
             state: data.address.state || '',
             zipCode: data.address.postcode || '',
             latitude: lat,
