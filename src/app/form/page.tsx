@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { toast } from "sonner";
+import { useSubmitLeadMutation } from "@/store/api/formApi";
 import { Step1Address } from "./_components/Step1Address";
 import { Step2Contact } from "./_components/Step2Contact";
 import { Step3Details } from "./_components/Step3Details";
@@ -47,6 +50,8 @@ export default function FormPage() {
     timeline: "IMMEDIATELY",
     imageUrls: [] as string[],
   });
+
+  const [submitLead, { isLoading: isSubmittingLead }] = useSubmitLeadMutation();
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -143,9 +148,27 @@ export default function FormPage() {
       imageUrls: formData.imageUrls
     };
 
-    console.log("Submitted Form Data (JSON Payload):", submissionPayload);
-    setIsSubmitted(true);
-    localStorage.removeItem("tygry8-form-data");
+    // console.log("Submitted Form Data (JSON Payload):", submissionPayload);
+    
+    const toastId = toast.loading("Submitting your property details...");
+    
+    try {
+      await submitLead(submissionPayload).unwrap();
+      
+      // Depending on how API returns success, adjust if needed
+      toast.success("Lead submitted successfully!", { id: toastId });
+      setIsSubmitted(true);
+      localStorage.removeItem("tygry8-form-data");
+    } catch (error: any) {
+      // console.error("Submission Error:", error);
+      let errorMessage = "An error occurred while submitting your details.";
+      if (error?.data?.error?.details && error.data.error.details.length > 0) {
+        errorMessage = error.data.error.details[0].message;
+      } else if (error?.data?.message) {
+        errorMessage = error.data.message;
+      }
+      toast.error(errorMessage, { id: toastId });
+    }
   };
 
   const getStepTitle = () => {
@@ -260,6 +283,7 @@ export default function FormPage() {
         return (
           <Step8Review
             formData={formData}
+            isSubmitting={isSubmittingLead}
             onEdit={(targetStep) => setStep(targetStep)}
             onSubmit={handleFinalSubmit}
             onBack={prevStep}

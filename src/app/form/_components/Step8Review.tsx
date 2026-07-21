@@ -35,6 +35,7 @@ interface Step8ReviewProps {
   onEdit: (step: number) => void;
   onSubmit: () => void;
   onBack: () => void;
+  isSubmitting?: boolean;
 }
 
 export function Step8Review({
@@ -42,6 +43,7 @@ export function Step8Review({
   onEdit,
   onSubmit,
   onBack,
+  isSubmitting,
 }: Step8ReviewProps) {
   const formatValue = (val: string) => {
     return val
@@ -141,9 +143,10 @@ export function Step8Review({
         <button
           type="button"
           onClick={onSubmit}
-          className="bg-blue-950 hover:bg-blue-900 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer"
+          disabled={isSubmitting}
+          className={`bg-blue-950 hover:bg-blue-900 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
         >
-          Submit Property
+          {isSubmitting ? "Submitting..." : "Submit Property"}
         </button>
       </div>
     </div>
