@@ -116,11 +116,11 @@ export function Step7UploadImages({
 
       {/* Thumbnails Section */}
       {imageUrls.length > 0 && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="flex flex-wrap gap-3">
           {imageUrls.map((src, i) => (
             <div
               key={i}
-              className="relative aspect-video rounded-xl overflow-hidden border border-gray-150 shadow-2xs group w-37.5 h-37.5"
+              className="relative rounded-xl overflow-hidden border border-gray-150 shadow-2xs group w-32 h-32 shrink-0"
             >
               <Image
                 src={src}

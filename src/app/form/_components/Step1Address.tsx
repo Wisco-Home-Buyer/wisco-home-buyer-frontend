@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const MapPreview = dynamic(() => import("./MapPreview"), { ssr: false });
 
 interface Step1AddressProps {
   formData: {
@@ -9,6 +11,8 @@ interface Step1AddressProps {
     city: string;
     state: string;
     zipCode: string;
+    latitude: number | null;
+    longitude: number | null;
   };
   updateFormData: (fields: Partial<Step1AddressProps["formData"]>) => void;
   onNext: () => void;
@@ -116,15 +120,8 @@ export function Step1Address({
       </div>
 
       {/* Map Preview Container */}
-      <div className="relative w-full h-44 rounded-2xl overflow-hidden border border-gray-150 shadow-2xs bg-slate-50">
-        <Image
-          src="/images/map_preview.png"
-          alt="Map preview of the location"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+      <div className="relative w-full h-64 sm:h-80 rounded-2xl overflow-hidden border border-gray-150 shadow-2xs bg-slate-50 z-0">
+        <MapPreview address={formData} onChange={updateFormData} />
       </div>
 
       {/* Footer Navigation Buttons */}

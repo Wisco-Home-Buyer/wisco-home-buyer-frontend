@@ -26,6 +26,8 @@ export default function FormPage() {
       city: "",
       state: "",
       zipCode: "",
+      latitude: null as number | null,
+      longitude: null as number | null,
     },
     contact: {
       fullName: "",
@@ -122,7 +124,9 @@ export default function FormPage() {
         street: formData.address.streetAddress,
         city: formData.address.city,
         state: formData.address.state, 
-        zip: formData.address.zipCode
+        zip: formData.address.zipCode,
+        latitude: formData.address.latitude,
+        longitude: formData.address.longitude,
       },
       contact: {
         fullName: formData.contact.fullName,
