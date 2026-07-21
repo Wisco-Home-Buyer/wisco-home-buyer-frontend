@@ -7,6 +7,7 @@ interface Step1AddressProps {
   formData: {
     streetAddress: string;
     city: string;
+    state: string;
     zipCode: string;
   };
   updateFormData: (fields: Partial<Step1AddressProps["formData"]>) => void;
@@ -49,8 +50,8 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
           />
         </div>
 
-        {/* City and Zip Code */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* City, State and Zip Code */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="space-y-1.5">
             <label htmlFor="city" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
               City
@@ -62,6 +63,21 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
               value={formData.city}
               onChange={(e) => updateFormData({ city: e.target.value })}
               placeholder="Milwaukee"
+              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label htmlFor="state" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+              State
+            </label>
+            <input
+              id="state"
+              type="text"
+              required
+              value={formData.state}
+              onChange={(e) => updateFormData({ state: e.target.value })}
+              placeholder="WI"
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
             />
           </div>

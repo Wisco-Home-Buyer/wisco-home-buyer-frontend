@@ -20,6 +20,7 @@ export default function FormPage() {
     address: {
       streetAddress: "",
       city: "",
+      state: "",
       zipCode: "",
     },
     contact: {
@@ -82,7 +83,7 @@ export default function FormPage() {
       address: {
         street: formData.address.streetAddress,
         city: formData.address.city,
-        state: "WI", // default Wisconsin
+        state: formData.address.state, 
         zip: formData.address.zipCode
       },
       contact: {
