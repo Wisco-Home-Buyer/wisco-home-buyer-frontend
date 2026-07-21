@@ -43,7 +43,7 @@ export default function FormPage() {
       otherRepairsNeeded: "",
     },
     occupancy: "OWNER_OCCUPIED",
-    timeline: "JUST_EXPLORING",
+    timeline: "IMMEDIATELY",
     imageUrls: [] as string[],
   });
 

@@ -45,7 +45,7 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
             required
             value={formData.streetAddress}
             onChange={(e) => updateFormData({ streetAddress: e.target.value })}
-            placeholder="e.g. 123 Main St"
+            placeholder="e.g. 123 Main Street"
             className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
           />
         </div>
@@ -62,7 +62,7 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
               required
               value={formData.city}
               onChange={(e) => updateFormData({ city: e.target.value })}
-              placeholder="Milwaukee"
+              placeholder="e.g. Milwaukee"
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
             />
           </div>
@@ -77,7 +77,7 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
               required
               value={formData.state}
               onChange={(e) => updateFormData({ state: e.target.value })}
-              placeholder="WI"
+              placeholder="e.g. WI"
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
             />
           </div>
@@ -92,7 +92,7 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
               required
               value={formData.zipCode}
               onChange={(e) => updateFormData({ zipCode: e.target.value })}
-              placeholder="53202"
+              placeholder="e.g. 53202"
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
             />
           </div>
@@ -116,7 +116,7 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
         <button
           type="submit"
           disabled={!formData.streetAddress.trim()}
-          className="bg-blue-950 hover:bg-blue-900 disabled:opacity-50 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer"
+          className="bg-[#0A2F59] hover:bg-blue-900 disabled:opacity-50 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer"
         >
           Continue
         </button>
