@@ -12,7 +12,7 @@ export function Step7UploadQuery({ onChoose }: Step7UploadQueryProps) {
       <h2 className="text-2xl md:text-3xl font-bold text-[#0B2545] text-center tracking-tight leading-tight">
         Do you want to upload pictures?
       </h2>
-      
+
       <div className="flex gap-4 items-center justify-center">
         <button
           type="button"

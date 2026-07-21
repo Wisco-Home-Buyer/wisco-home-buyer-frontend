@@ -86,13 +86,15 @@ export function Hero() {
                 Get My FREE Cash Offer!
               </Button>
             </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              className="w-full sm:w-auto border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-12 px-8 text-base cursor-pointer"
-            >
-              How It Works
-            </Button>
+            <Link href="/#how-it-works" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-12 px-8 text-base cursor-pointer"
+              >
+                How It Works
+              </Button>
+            </Link>
           </div>
 
           {/* Trust Rating Section */}

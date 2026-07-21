@@ -5,6 +5,7 @@ import { ReduxProvider } from "@/store/Provider";
 import { Navbar } from "@/components/shared/layout/Navbar";
 import { Footer } from "@/components/shared/layout/Footer";
 import { SmoothScroll } from "@/components/shared/layout/SmoothScroll";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -40,6 +41,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </SmoothScroll>
+          <Toaster position="top-right" richColors />
         </ReduxProvider>
       </body>
     </html>

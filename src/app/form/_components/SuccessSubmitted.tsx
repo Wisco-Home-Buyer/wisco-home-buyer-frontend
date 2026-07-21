@@ -6,11 +6,21 @@ import Link from "next/link";
 export function SuccessSubmitted() {
   return (
     <div className="bg-white border-x border-b border-t-4 border-t-blue-950 border-gray-150 rounded-3xl p-6 md:p-8 shadow-md flex flex-col items-center space-y-6 text-center">
-      
       {/* Green Checkmark Circle */}
       <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500 shadow-2xs">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="2.5"
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12.75l6 6 9-13.5"
+          />
         </svg>
       </div>
 
@@ -20,7 +30,8 @@ export function SuccessSubmitted() {
           Property Submitted!
         </h2>
         <p className="text-xs md:text-sm text-gray-500 font-semibold leading-relaxed px-2">
-          Thank you for submitting your property details. Our system is currently analyzing the data and preparing your cash offer.
+          Thank you for submitting your property details. Our system is
+          currently analyzing the data and preparing your cash offer.
         </p>
       </div>
 
@@ -29,7 +40,7 @@ export function SuccessSubmitted() {
         <h4 className="text-sm font-extrabold text-[#0B2545] tracking-wide">
           What happens next?
         </h4>
-        
+
         <div className="space-y-3.5">
           {/* Point 1 */}
           <div className="flex items-start gap-3">

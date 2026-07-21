@@ -35,9 +35,16 @@ interface Step8ReviewProps {
   onEdit: (step: number) => void;
   onSubmit: () => void;
   onBack: () => void;
+  isSubmitting?: boolean;
 }
 
-export function Step8Review({ formData, onEdit, onSubmit, onBack }: Step8ReviewProps) {
+export function Step8Review({
+  formData,
+  onEdit,
+  onSubmit,
+  onBack,
+  isSubmitting,
+}: Step8ReviewProps) {
   const formatValue = (val: string) => {
     return val
       .toLowerCase()
@@ -63,7 +70,8 @@ export function Step8Review({ formData, onEdit, onSubmit, onBack }: Step8ReviewP
           <div className="space-y-1">
             <h4 className="font-bold text-[#0B2545] text-sm">Property</h4>
             <p className="text-xs text-gray-500 font-medium leading-normal">
-              {formData.address.streetAddress}, {formData.address.city}, {formData.address.zipCode}
+              {formData.address.streetAddress}, {formData.address.city},{" "}
+              {formData.address.zipCode}
             </p>
           </div>
           <button
@@ -80,9 +88,8 @@ export function Step8Review({ formData, onEdit, onSubmit, onBack }: Step8ReviewP
           <div className="space-y-1">
             <h4 className="font-bold text-[#0B2545] text-sm">Contact</h4>
             <p className="text-xs text-gray-500 font-medium leading-normal">
-              • Name: {formData.contact.fullName} <br />
-              • Phone: {formData.contact.phone} <br />
-              • Email: {formData.contact.email}
+              • Name: {formData.contact.fullName} <br />• Phone:{" "}
+              {formData.contact.phone} <br />• Email: {formData.contact.email}
             </p>
           </div>
           <button
@@ -99,13 +106,17 @@ export function Step8Review({ formData, onEdit, onSubmit, onBack }: Step8ReviewP
           <div className="space-y-1">
             <h4 className="font-bold text-[#0B2545] text-sm">Details</h4>
             <p className="text-xs text-gray-500 font-medium leading-relaxed">
-              • Timeline: {formatValue(formData.timeline)} <br />
-              • Occupancy: {formatValue(formData.occupancy)} <br />
-              • Space: {formData.details.bedrooms} Beds / {formData.details.bathrooms} Baths / {formData.details.squareFeet} SqFt <br />
-              • Year Built: {formData.details.yearBuilt} <br />
-              • Condition: Roof ({formData.condition.roofCondition}), Kitchen ({formData.condition.kitchenCondition}), Bath ({formData.condition.bathroomCondition}), Foundation ({formData.condition.foundationCondition}) <br />
-              • Repairs: {formData.condition.otherRepairsNeeded || "None"} <br />
-              • Images: {formData.imageUrls.length} Uploaded
+              • Timeline: {formatValue(formData.timeline)} <br />• Occupancy:{" "}
+              {formatValue(formData.occupancy)} <br />• Space:{" "}
+              {formData.details.bedrooms} Beds / {formData.details.bathrooms}{" "}
+              Baths / {formData.details.squareFeet} SqFt <br />• Year Built:{" "}
+              {formData.details.yearBuilt} <br />• Condition: Roof (
+              {formData.condition.roofCondition}), Kitchen (
+              {formData.condition.kitchenCondition}), Bath (
+              {formData.condition.bathroomCondition}), Foundation (
+              {formData.condition.foundationCondition}) <br />• Repairs:{" "}
+              {formData.condition.otherRepairsNeeded || "None"} <br />• Images:{" "}
+              {formData.imageUrls.length} Uploaded
             </p>
           </div>
           <button
@@ -132,9 +143,10 @@ export function Step8Review({ formData, onEdit, onSubmit, onBack }: Step8ReviewP
         <button
           type="button"
           onClick={onSubmit}
-          className="bg-blue-950 hover:bg-blue-900 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer"
+          disabled={isSubmitting}
+          className={`bg-blue-950 hover:bg-blue-900 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
         >
-          Submit Property
+          {isSubmitting ? "Submitting..." : "Submit Property"}
         </button>
       </div>
     </div>

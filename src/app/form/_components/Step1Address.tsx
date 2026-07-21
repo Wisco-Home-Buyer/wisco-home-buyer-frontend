@@ -1,19 +1,28 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const MapPreview = dynamic(() => import("./MapPreview"), { ssr: false });
 
 interface Step1AddressProps {
   formData: {
     streetAddress: string;
     city: string;
+    state: string;
     zipCode: string;
+    latitude: number | null;
+    longitude: number | null;
   };
   updateFormData: (fields: Partial<Step1AddressProps["formData"]>) => void;
   onNext: () => void;
 }
 
-export function Step1Address({ formData, updateFormData, onNext }: Step1AddressProps) {
+export function Step1Address({
+  formData,
+  updateFormData,
+  onNext,
+}: Step1AddressProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.streetAddress.trim()) {
@@ -35,7 +44,10 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
       <div className="space-y-4">
         {/* Street Address */}
         <div className="space-y-1.5">
-          <label htmlFor="streetAddress" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+          <label
+            htmlFor="streetAddress"
+            className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+          >
             Street Address
           </label>
           <input
@@ -44,15 +56,18 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
             required
             value={formData.streetAddress}
             onChange={(e) => updateFormData({ streetAddress: e.target.value })}
-            placeholder="e.g. 123 Main St"
+            placeholder="e.g. 123 Main Street"
             className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
           />
         </div>
 
-        {/* City and Zip Code */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* City, State and Zip Code */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="space-y-1.5">
-            <label htmlFor="city" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+            <label
+              htmlFor="city"
+              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+            >
               City
             </label>
             <input
@@ -61,13 +76,34 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
               required
               value={formData.city}
               onChange={(e) => updateFormData({ city: e.target.value })}
-              placeholder="Milwaukee"
+              placeholder="e.g. Milwaukee"
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="zipCode" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+            <label
+              htmlFor="state"
+              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+            >
+              State
+            </label>
+            <input
+              id="state"
+              type="text"
+              required
+              value={formData.state}
+              onChange={(e) => updateFormData({ state: e.target.value })}
+              placeholder="e.g. WI"
+              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label
+              htmlFor="zipCode"
+              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+            >
               ZIP Code
             </label>
             <input
@@ -76,7 +112,7 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
               required
               value={formData.zipCode}
               onChange={(e) => updateFormData({ zipCode: e.target.value })}
-              placeholder="53202"
+              placeholder="e.g. 53202"
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
             />
           </div>
@@ -84,15 +120,8 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
       </div>
 
       {/* Map Preview Container */}
-      <div className="relative w-full h-44 rounded-2xl overflow-hidden border border-gray-150 shadow-2xs bg-slate-50">
-        <Image
-          src="/images/map_preview.png"
-          alt="Map preview of the location"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+      <div className="relative w-full h-64 sm:h-80 rounded-2xl overflow-hidden border border-gray-150 shadow-2xs bg-slate-50 z-0">
+        <MapPreview address={formData} onChange={updateFormData} />
       </div>
 
       {/* Footer Navigation Buttons */}
@@ -100,7 +129,7 @@ export function Step1Address({ formData, updateFormData, onNext }: Step1AddressP
         <button
           type="submit"
           disabled={!formData.streetAddress.trim()}
-          className="bg-blue-950 hover:bg-blue-900 disabled:opacity-50 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer"
+          className="bg-[#0A2F59] hover:bg-blue-900 disabled:opacity-50 text-white rounded-lg px-8 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-98 cursor-pointer"
         >
           Continue
         </button>

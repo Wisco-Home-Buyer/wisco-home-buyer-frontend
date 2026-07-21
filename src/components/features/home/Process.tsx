@@ -79,7 +79,7 @@ export function Process() {
   }, { scope: container });
 
   return (
-    <section ref={container} id="how-it-works" className="bg-white py-20 md:py-28">
+    <section ref={container} className="bg-white py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-16">
         {/* Header */}
         <div className="process-header text-center space-y-3 mb-16 md:mb-20 max-w-2xl mx-auto">

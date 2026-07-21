@@ -10,7 +10,12 @@ interface Step5OccupancyProps {
   onBack: () => void;
 }
 
-export function Step5Occupancy({ value, onChange, onNext, onBack }: Step5OccupancyProps) {
+export function Step5Occupancy({
+  value,
+  onChange,
+  onNext,
+  onBack,
+}: Step5OccupancyProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (value) {

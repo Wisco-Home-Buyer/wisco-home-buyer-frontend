@@ -14,17 +14,26 @@ interface Step2ContactProps {
   onBack: () => void;
 }
 
-export function Step2Contact({ formData, updateFormData, onNext, onBack }: Step2ContactProps) {
+export function Step2Contact({
+  formData,
+  updateFormData,
+  onNext,
+  onBack,
+}: Step2ContactProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.fullName.trim() && formData.phone.trim() && formData.email.trim()) {
+    if (
+      formData.fullName.trim() &&
+      formData.phone.trim() &&
+      formData.email.trim()
+    ) {
       onNext();
     }
   };
 
-  const isFormValid = 
-    formData.fullName.trim() !== "" && 
-    formData.phone.trim() !== "" && 
+  const isFormValid =
+    formData.fullName.trim() !== "" &&
+    formData.phone.trim() !== "" &&
     formData.email.trim() !== "";
 
   return (
@@ -41,7 +50,10 @@ export function Step2Contact({ formData, updateFormData, onNext, onBack }: Step2
       <div className="space-y-4">
         {/* Full Name */}
         <div className="space-y-1.5">
-          <label htmlFor="fullName" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+          <label
+            htmlFor="fullName"
+            className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+          >
             Full Name
           </label>
           <input
@@ -57,7 +69,10 @@ export function Step2Contact({ formData, updateFormData, onNext, onBack }: Step2
 
         {/* Phone Number */}
         <div className="space-y-1.5">
-          <label htmlFor="phone" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+          <label
+            htmlFor="phone"
+            className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+          >
             Phone Number
           </label>
           <input
@@ -73,7 +88,10 @@ export function Step2Contact({ formData, updateFormData, onNext, onBack }: Step2
 
         {/* Email Address */}
         <div className="space-y-1.5">
-          <label htmlFor="email" className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
+          <label
+            htmlFor="email"
+            className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
+          >
             Email Address
           </label>
           <input

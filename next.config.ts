@@ -11,7 +11,19 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "tygry8.saikat.com.bd",
+      },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://tygry8.saikat.com.bd/api/:path*',
+      },
+    ];
   },
 };
 
