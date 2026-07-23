@@ -100,13 +100,13 @@ export function Hero() {
           {/* Trust Rating Section */}
           <div className="hero-trust flex items-center gap-4 pt-4">
             <div className="flex -space-x-3">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
                   className="h-10 w-10 rounded-full border-2 border-white bg-gray-300 overflow-hidden relative"
                 >
                   <Image
-                    src={`https://i.pravatar.cc/100?img=${i + 10}`}
+                    src={`/images/customers/${i}.jpg`}
                     alt={`Customer ${i}`}
                     fill
                     className="object-cover"
