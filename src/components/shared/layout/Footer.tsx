@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Award } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -19,15 +19,22 @@ export function Footer() {
                 height={120}
                 priority
                 unoptimized
-                className="object-contain brightness-0 invert"
+                className="object-contain brightness-0 invert w-auto h-auto"
               />
             </Link>
             <p className="text-xs md:text-sm text-slate-400 max-w-xs leading-relaxed">
-              Wisconsin&apos;s #1 Cash Home Buyer. Fast, fair, and stress-free since 2012.
+              Wisconsin&apos;s #1 Cash Home Buyer. Fast, fair, and stress-free
+              since 2012.
             </p>
             <div className="pt-2">
               <div className="inline-flex items-center gap-2 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-xs font-bold text-slate-300">
-                <Award className="h-4 w-4 text-slate-400 shrink-0" />
+                <Image
+                  src="/images/Accredited.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="brightness-0 invert"
+                />
                 <span>BBB Accredited Business</span>
               </div>
             </div>
@@ -35,25 +42,39 @@ export function Footer() {
 
           {/* Column 2: Company */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Company</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
+              Company
+            </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="#about" className="hover:text-white transition-colors">
+                <Link
+                  href="#about"
+                  className="hover:text-white transition-colors"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="#how-it-works" className="hover:text-white transition-colors">
+                <Link
+                  href="#how-it-works"
+                  className="hover:text-white transition-colors"
+                >
                   How It Works
                 </Link>
               </li>
               <li>
-                <Link href="#why-us" className="hover:text-white transition-colors">
+                <Link
+                  href="#why-us"
+                  className="hover:text-white transition-colors"
+                >
                   Why Us
                 </Link>
               </li>
               <li>
-                <Link href="#testimonials" className="hover:text-white transition-colors">
+                <Link
+                  href="#testimonials"
+                  className="hover:text-white transition-colors"
+                >
                   Testimonials
                 </Link>
               </li>
@@ -62,15 +83,23 @@ export function Footer() {
 
           {/* Column 3: Legal */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Legal</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
+              Legal
+            </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                <Link
+                  href="/privacy-policy"
+                  className="hover:text-white transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="hover:text-white transition-colors">
+                <Link
+                  href="/terms-of-service"
+                  className="hover:text-white transition-colors"
+                >
                   Terms of Service
                 </Link>
               </li>
@@ -79,19 +108,26 @@ export function Footer() {
 
           {/* Column 4: Contact */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Contact</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
+              Contact
+            </h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 shrink-0">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span className="font-medium text-xs md:text-sm text-slate-300">(414) 555-0192</span>
+                <span className="font-medium text-xs md:text-sm text-slate-300">
+                  (414) 555-0192
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 shrink-0">
                   <Mail className="h-4 w-4" />
                 </div>
-                <a href="mailto:hello@wiscohomebuyer.com" className="font-medium text-xs md:text-sm text-slate-300 hover:text-white transition-colors">
+                <a
+                  href="mailto:hello@wiscohomebuyer.com"
+                  className="font-medium text-xs md:text-sm text-slate-300 hover:text-white transition-colors"
+                >
                   hello@wiscohomebuyer.com
                 </a>
               </li>
@@ -99,7 +135,9 @@ export function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 shrink-0">
                   <MapPin className="h-4 w-4" />
                 </div>
-                <span className="font-medium text-xs md:text-sm text-slate-300">Milwaukee, WI</span>
+                <span className="font-medium text-xs md:text-sm text-slate-300">
+                  Milwaukee, WI
+                </span>
               </li>
             </ul>
           </div>
@@ -109,10 +147,16 @@ export function Footer() {
         <div className="border-t border-slate-800/80 pt-6 mt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
           <span>© 2024 Wisco Home Buyer. All rights reserved.</span>
           <div className="flex gap-6">
-            <Link href="/privacy-policy" className="hover:text-slate-300 transition-colors">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-slate-300 transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="hover:text-slate-300 transition-colors">
+            <Link
+              href="/terms-of-service"
+              className="hover:text-slate-300 transition-colors"
+            >
               Terms of Service
             </Link>
           </div>

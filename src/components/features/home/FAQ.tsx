@@ -123,9 +123,10 @@ export function FAQ() {
           <div className="faq-image-wrapper relative w-full h-80 md:h-112.5 lg:h-full rounded-3xl overflow-hidden shadow-md">
             <Image
               src="/images/FAQImage.png"
-              alt="Beautiful Mediterranean style home with warm lighting"
+              alt="Customer service representative"
               fill
               priority
+              sizes="(max-width: 768px) 100vw, 50vw"
               unoptimized
               className="object-cover"
             />

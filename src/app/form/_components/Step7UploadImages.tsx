@@ -116,18 +116,18 @@ export function Step7UploadImages({
 
       {/* Thumbnails Section */}
       {imageUrls.length > 0 && (
-        <div className="flex flex-wrap gap-3">
+        <div className="grid grid-cols-3 gap-3">
           {imageUrls.map((src, i) => (
             <div
               key={i}
-              className="relative rounded-xl overflow-hidden border border-gray-150 shadow-2xs group w-32 h-32 shrink-0"
+              className="relative rounded-xl overflow-hidden border border-gray-150 shadow-2xs group w-full aspect-220/130"
             >
               <Image
                 src={src}
                 alt={`Property thumbnail ${i + 1}`}
-                width={150}
-                height={150}
-                className="object-center"
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-cover object-center"
               />
               <button
                 type="button"

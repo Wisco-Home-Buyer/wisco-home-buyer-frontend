@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useRef } from "react";
-import { ChartLine, Home } from "lucide-react";
+import { ChartLine } from "lucide-react";
 import { StepCard } from "./_components/StepCard";
 import { FaSackDollar } from "react-icons/fa6";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { AiFillHome } from "react-icons/ai";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -19,7 +20,7 @@ export function Process() {
     {
       imageSrc: "/images/processImage1.png", // Old house
       imageAlt: "Old house in need of repair",
-      icon: <Home className="h-5 w-5" />,
+      icon: <AiFillHome className="h-5 w-5" />,
       title: "Submit Your Property - No Matter The Condition!",
       description: "Fill out our quick form with basic property details. Takes less than 2 minutes — no account required.",
       footer: "2-min form"

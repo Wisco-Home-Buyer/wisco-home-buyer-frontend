@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Home, Clock, Heart, Calendar } from "lucide-react";
 import { ImpactCard } from "./_components/ImpactCard";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { AiFillHome } from "react-icons/ai";
+import { FaClock, FaHeart } from "react-icons/fa6";
+import { FaCalendarAlt } from "react-icons/fa";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -16,25 +18,25 @@ export function Impact() {
 
   const impactData = [
     {
-      icon: <Home className="h-5 w-5" />,
+      icon: <AiFillHome className="h-5 w-5" />,
       value: "500+",
       title: "Homes Purchased",
       description: "Across all of Wisconsin",
     },
     {
-      icon: <Clock className="h-5 w-5" />,
+      icon: <FaClock className="h-5 w-5" />,
       value: "24 Hrs",
       title: "Average Response",
       description: "Offer in your inbox fast",
     },
     {
-      icon: <Heart className="h-5 w-5 fill-current" />,
+      icon: <FaHeart  className="h-5 w-5 fill-current" />,
       value: "98%",
       title: "Customer Satisfaction",
       description: "5-star verified reviews",
     },
     {
-      icon: <Calendar className="h-5 w-5" />,
+      icon: <FaCalendarAlt className="h-5 w-5" />,
       value: "07",
       title: "Days Avg. Closing",
       description: "From offer to closed",
