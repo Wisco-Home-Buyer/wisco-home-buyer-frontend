@@ -114,6 +114,7 @@ export function Hero() {
                     src={`/images/customers/${i}.jpg`}
                     alt={`Customer ${i}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover"
                   />
                 </div>
@@ -140,6 +141,7 @@ export function Hero() {
                 alt=""
                 width={16}
                 height={16}
+                className="w-auto h-auto"
               />
               Licensed & Insured
             </div>
@@ -149,6 +151,7 @@ export function Hero() {
                 alt=""
                 width={16}
                 height={16}
+                className="w-auto h-auto"
               />
               BBB Accredited
             </div>
@@ -158,6 +161,7 @@ export function Hero() {
                 alt=""
                 width={16}
                 height={16}
+                className="w-auto h-auto"
               />
               500+ Homes Sold
             </div>

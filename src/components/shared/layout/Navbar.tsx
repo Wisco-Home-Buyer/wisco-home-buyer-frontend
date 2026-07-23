@@ -55,11 +55,10 @@ export function Navbar() {
             <Image
               src="/images/logo.png"
               alt="Wisco Home Buyer Logo"
-              width={130}
-              height={120}
+              width={120}
+              height={40}
               priority
-              unoptimized
-              className="object-contain"
+              className="object-contain w-auto h-auto"
             />
           </Link>
         </div>

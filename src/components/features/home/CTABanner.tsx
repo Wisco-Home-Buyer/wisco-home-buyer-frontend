@@ -66,6 +66,7 @@ export function CTABanner() {
             src="/images/CTABanner.png"
             alt="Beautiful Wisconsin home at dusk"
             fill
+            sizes="100vw"
             priority
             unoptimized
             className="object-cover"

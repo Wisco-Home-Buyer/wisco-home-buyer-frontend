@@ -126,6 +126,7 @@ export function Step7UploadImages({
                 src={src}
                 alt={`Property thumbnail ${i + 1}`}
                 fill
+                sizes="(max-width: 768px) 50vw, 33vw"
                 className="object-cover object-center"
               />
               <button

@@ -19,7 +19,7 @@ export function Footer() {
                 height={120}
                 priority
                 unoptimized
-                className="object-contain brightness-0 invert"
+                className="object-contain brightness-0 invert w-auto h-auto"
               />
             </Link>
             <p className="text-xs md:text-sm text-slate-400 max-w-xs leading-relaxed">
