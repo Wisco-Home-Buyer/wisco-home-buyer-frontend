@@ -14,6 +14,19 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
+const premiumIcon = L.divIcon({
+  className: "bg-transparent",
+  html: `<div class="relative flex flex-col items-center justify-center w-12 h-12">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-blue-600 drop-shadow-lg relative z-10 animate-[bounce_2s_infinite]">
+             <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.724 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+           </svg>
+           <div class="absolute bottom-0.5 w-6 h-6 bg-blue-500 rounded-full opacity-40 animate-ping" style="animation-duration: 2s;"></div>
+           <div class="absolute bottom-1 w-4 h-1.5 bg-black/20 rounded-[100%] blur-[1px]"></div>
+         </div>`,
+  iconSize: [48, 48],
+  iconAnchor: [24, 46],
+});
+
 interface MapPreviewProps {
   address: {
     streetAddress: string;
@@ -107,19 +120,19 @@ export default function MapPreview({ address, onChange }: MapPreviewProps) {
   }, [address.streetAddress, address.city, address.state, address.zipCode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="w-full h-full relative z-0">
+    <div className="w-full h-full relative z-0 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100">
       <MapContainer 
         center={position} 
         zoom={address.latitude ? 16 : 4} 
         scrollWheelZoom={false}
-        className="w-full h-full"
+        attributionControl={false}
+        className="w-full h-full z-0"
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         />
         {(address.latitude && address.longitude) && (
-          <Marker position={[address.latitude, address.longitude]} />
+          <Marker position={[address.latitude, address.longitude]} icon={premiumIcon} />
         )}
         <MapEvents onChange={onChange} setPosition={setPosition} />
         <MapUpdater position={position} />
