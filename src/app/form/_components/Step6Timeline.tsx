@@ -25,8 +25,8 @@ export function Step6Timeline({
 
   const options = [
     { label: "Immediately", value: "IMMEDIATELY" },
-    { label: "30 Days", value: "THIRTY_DAYS" },
-    { label: "60 Days", value: "SIXTY_DAYS" },
+    { label: "30 Days", value: "DAYS_30" },
+    { label: "60 Days", value: "DAYS_60" },
     { label: "Just Exploring", value: "JUST_EXPLORING" },
   ];
 
