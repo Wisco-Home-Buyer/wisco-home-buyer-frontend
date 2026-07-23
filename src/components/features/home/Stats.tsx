@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Star, Briefcase, Home, Calendar } from "lucide-react";
+import { Star } from "lucide-react";
 import { StatCard } from "./_components/StatCard";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { FaBriefcase, FaCalendarCheck } from "react-icons/fa6";
+import { AiFillHome } from "react-icons/ai";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -21,17 +23,17 @@ export function Stats() {
       label: "Seller Rating",
     },
     {
-      icon: <Briefcase className="h-6 w-6" />,
+      icon: <FaBriefcase className="h-6 w-6" />,
       value: "12+",
       label: "Years Experience",
     },
     {
-      icon: <Home className="h-6 w-6" />,
+      icon: <AiFillHome  className="h-6 w-6" />,
       value: "500+",
       label: "Properties Purchased",
     },
     {
-      icon: <Calendar className="h-6 w-6" />,
+      icon: <FaCalendarCheck  className="h-6 w-6" />,
       value: "7 Days",
       label: "Average Closing",
     },

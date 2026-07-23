@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Zap, Hammer, Users } from "lucide-react";
+import { Zap, Hammer } from "lucide-react";
 import { AdvantageCard } from "./_components/AdvantageCard";
 import { CiCoinInsert } from "react-icons/ci";
-import { FaLock, FaRegChartBar } from "react-icons/fa6";
+import { FaLock, FaRegChartBar, FaUsers } from "react-icons/fa6";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -46,7 +46,7 @@ export function Advantages() {
       imageAlt: "Laptop analyzing data"
     },
     {
-      icon: <Users className="h-5 w-5" />,
+      icon: <FaUsers  className="h-5 w-5" />,
       title: "Professional Team",
       description: "Local Wisconsin experts who understand your market and treat you with honesty and respect.",
       imageSrc: "/images/image5.png",

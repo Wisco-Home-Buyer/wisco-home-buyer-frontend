@@ -24,7 +24,6 @@ export function Navbar() {
       }
     };
 
-    // Check on mount in case page is already scrolled
     handleScroll();
 
     window.addEventListener("scroll", handleScroll);
@@ -77,7 +76,7 @@ export function Navbar() {
         {/* Action Buttons & Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
           {/* CTA Button - Desktop */}
-          <Link href="/cash-offer" className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-4 py-2 hidden lg:flex cursor-pointer text-sm font-medium transition-colors">
+          <Link href="/cash-offer" className="bg-blue-950 hover:bg-blue-900 text-white rounded-md px-4 py-3 hidden lg:flex cursor-pointer text-sm font-medium transition-colors">
             Get My FREE Cash Offer!
           </Link>
 
