@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
 interface Step2ContactProps {
@@ -20,11 +20,28 @@ export function Step2Contact({
   onNext,
   onBack,
 }: Step2ContactProps) {
+  const [phoneError, setPhoneError] = useState(false);
+
+  const phoneRegex = /^(\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+
+  const validatePhone = (value: string) => {
+    return phoneRegex.test(value);
+  };
+
+  const handlePhoneChange = (value: string) => {
+    updateFormData({ phone: value });
+    if (value.length > 0 && !validatePhone(value)) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (
       formData.fullName.trim() &&
-      formData.phone.trim() &&
+      validatePhone(formData.phone) &&
       formData.email.trim()
     ) {
       onNext();
@@ -33,7 +50,7 @@ export function Step2Contact({
 
   const isFormValid =
     formData.fullName.trim() !== "" &&
-    formData.phone.trim() !== "" &&
+    validatePhone(formData.phone) &&
     formData.email.trim() !== "";
 
   return (
@@ -80,10 +97,13 @@ export function Step2Contact({
             type="tel"
             required
             value={formData.phone}
-            onChange={(e) => updateFormData({ phone: e.target.value })}
+            onChange={(e) => handlePhoneChange(e.target.value)}
             placeholder="(555) 123-4567"
-            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
+            className={`w-full bg-white border ${phoneError ? 'border-red-500' : 'border-gray-200'} rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs`}
           />
+          {phoneError && (
+            <p className="text-[10px] text-red-500 font-bold">Please enter a valid US phone number</p>
+          )}
         </div>
 
         {/* Email Address */}

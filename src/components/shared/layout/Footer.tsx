@@ -11,21 +11,23 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-12">
           {/* Column 1: Logo & Info */}
           <div className="space-y-4">
-            <Link href="/" className="inline-block">
-              <Image
-                src="/images/logo.png"
-                alt="Wisco Home Buyer Logo"
-                width={130}
-                height={120}
-                priority
-                unoptimized
-                className="object-contain brightness-0 invert w-auto h-auto"
-              />
-            </Link>
-            <p className="text-xs md:text-sm text-slate-400 max-w-xs leading-relaxed">
-              Wisconsin&apos;s #1 Cash Home Buyer. Fast, fair, and stress-free
-              since 2012.
-            </p>
+            <div className="space-y-1">
+              <Link href="/" className="inline-block">
+                <Image
+                  src="/images/logoFooter.png"
+                  alt="Wisco Home Buyer Logo"
+                  width={130}
+                  height={120}
+                  priority
+                  unoptimized
+                  className="object-contain brightness-0 invert"
+                />
+              </Link>
+              <p className="text-xs md:text-sm text-slate-400 max-w-xs leading-relaxed">
+                Wisconsin&apos;s #1 Cash Home Buyer. Fast, fair, and stress-free
+                since 2012.
+              </p>
+            </div>
             <div className="pt-2">
               <div className="inline-flex items-center gap-2 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-xs font-bold text-slate-300">
                 <Image
