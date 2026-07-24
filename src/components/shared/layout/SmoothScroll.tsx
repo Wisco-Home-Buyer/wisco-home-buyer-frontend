@@ -27,6 +27,18 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
 
     requestAnimationFrame(raf);
 
+    // Handle initial hash scroll — e.g. when navigating from /privacy-policy to /#faq
+    // Lenis blocks native hash scrolling, so we manually scroll after init
+    const hash = window.location.hash?.slice(1);
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+
     // Clean up on unmount
     return () => {
       lenis.destroy();

@@ -5,10 +5,11 @@ import Image from "next/image";
 import { navItems } from "./navItems";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,6 +31,30 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleHashClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    const hashIndex = href.indexOf("#");
+    if (hashIndex === -1) return;
+
+    const hash = href.slice(hashIndex + 1);
+    setIsOpen(false);
+
+    if (pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", `#${hash}`);
+      }
+    } else {
+      // On a different page — do a full navigation with hash so URL is correct
+      e.preventDefault();
+      router.push(`/#${hash}`);
+    }
+  };
+
   return (
     <header 
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
@@ -49,6 +74,7 @@ export function Navbar() {
               if (window.location.pathname === "/") {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
+                window.history.pushState(null, "", "/");
               }
             }}
           >
@@ -66,7 +92,12 @@ export function Navbar() {
         {/* Navigation Links - Desktop */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-600">
           {navItems.map((item) => (
-            <Link key={item.label} href={item.href} className="hover:text-blue-900 transition-colors">
+            <Link
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleHashClick(e, item.href)}
+              className="hover:text-blue-900 transition-colors"
+            >
               {item.label}
             </Link>
           ))}
@@ -104,7 +135,7 @@ export function Navbar() {
               <Link 
                 key={item.label} 
                 href={item.href} 
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleHashClick(e, item.href)}
                 className="hover:text-blue-900 transition-colors py-2 border-b border-gray-100 last:border-0"
               >
                 {item.label}
@@ -124,5 +155,3 @@ export function Navbar() {
     </header>
   );
 }
-
-
