@@ -18,8 +18,56 @@ const marhey = Marhey({
 });
 
 export const metadata: Metadata = {
-  title: "Wisco Home Buyer",
-  description: "Sell your Wisconsin home fast.",
+  metadataBase: new URL("https://wiscohomebuyer.com"),
+  title: {
+    default: "Wisco Home Buyer | Sell Your Wisconsin Home Fast for Cash",
+    template: "%s | Wisco Home Buyer",
+  },
+  description:
+    "Wisco Home Buyer purchases homes across Wisconsin for cash. No repairs, no agent fees, no hassle. Get a free, no-obligation cash offer within 24 hours.",
+  keywords: [
+    "sell home fast Wisconsin",
+    "cash home buyer Wisconsin",
+    "we buy houses Wisconsin",
+    "sell house as-is Milwaukee",
+    "no repairs cash offer",
+    "fast home sale Wisconsin",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://wiscohomebuyer.com",
+    siteName: "Wisco Home Buyer",
+    title: "Wisco Home Buyer | Sell Your Wisconsin Home Fast for Cash",
+    description:
+      "Get a free cash offer for your Wisconsin home. We buy houses as-is — no fees, no repairs, close in as little as 7 days.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Wisco Home Buyer — Fast Cash Offers for Wisconsin Homes",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wisco Home Buyer | Sell Your Wisconsin Home Fast for Cash",
+    description:
+      "No repairs. No fees. Close in 7 days. Get your free cash offer today.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
