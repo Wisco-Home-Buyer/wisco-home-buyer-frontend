@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Tooltip, ZoomControl, useMapEvents, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -16,15 +16,14 @@ L.Icon.Default.mergeOptions({
 
 const premiumIcon = L.divIcon({
   className: "bg-transparent",
-  html: `<div class="relative flex flex-col items-center justify-center w-12 h-12">
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-blue-600 drop-shadow-lg relative z-10 animate-[bounce_2s_infinite]">
-             <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.724 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+  html: `<div class="relative flex flex-col items-center justify-center">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0B2545" class="w-12 h-12 drop-shadow-md transform transition-transform hover:scale-105">
+             <path fill-rule="evenodd" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" clip-rule="evenodd" />
            </svg>
-           <div class="absolute bottom-0.5 w-6 h-6 bg-blue-500 rounded-full opacity-40 animate-ping" style="animation-duration: 2s;"></div>
-           <div class="absolute bottom-1 w-4 h-1.5 bg-black/20 rounded-[100%] blur-[1px]"></div>
+           <div class="w-4 h-1 bg-black/30 rounded-full blur-[1px] -mt-1"></div>
          </div>`,
-  iconSize: [48, 48],
-  iconAnchor: [24, 46],
+  iconSize: [48, 52],
+  iconAnchor: [24, 50],
 });
 
 interface MapPreviewProps {
@@ -112,7 +111,7 @@ export default function MapPreview({ address, onChange }: MapPreviewProps) {
       } catch (error) {
         console.error("Forward geocoding error:", error);
       }
-    }, 1000); // 1-second debounce
+    }, 1000); 
 
     return () => {
       if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
@@ -120,20 +119,59 @@ export default function MapPreview({ address, onChange }: MapPreviewProps) {
   }, [address.streetAddress, address.city, address.state, address.zipCode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="w-full h-full relative z-0 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100">
+    <div className="group relative w-full h-full min-h-75 rounded-2xl overflow-hidden shadow-[0_10px_35px_rgba(0,0,0,0.1)] border border-slate-200 bg-white transition-all duration-300">
+      {/* Top Right Glassmorphic Status Badge */}
+      <div className="absolute top-3 right-3 z-20 flex items-center gap-2 pointer-events-none">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md border border-white/20 shadow-md text-white">
+          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[11px] font-semibold tracking-wide">
+            {address.streetAddress ? "Location Verified" : "Pin Location"}
+          </span>
+        </div>
+      </div>
+
+      {/* Bottom Left Helper Badge */}
+      <div className="absolute bottom-3 left-3 z-20 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 shadow-md text-slate-700 pointer-events-none">
+        <svg className="w-3.5 h-3.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+        </svg>
+        <span className="text-[11px] font-bold text-slate-800">
+          Click map to set pin
+        </span>
+      </div>
+
+      {/* Map Container */}
       <MapContainer 
         center={position} 
         zoom={address.latitude ? 16 : 4} 
+        zoomControl={false}
         scrollWheelZoom={false}
         attributionControl={false}
         className="w-full h-full z-0"
       >
+        <ZoomControl position="topleft" />
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {(address.latitude && address.longitude) && (
-          <Marker position={[address.latitude, address.longitude]} icon={premiumIcon} />
-        )}
+        <Marker position={position} icon={premiumIcon}>
+          <Tooltip 
+            permanent 
+            direction="top" 
+            offset={[0, -52]}
+            className="premium-map-tooltip"
+          >
+            <div className="flex flex-col items-center text-center px-2 py-1 max-w-60">
+              <span className="font-bold text-sm text-[#0B2545] truncate tracking-tight">
+                {address.streetAddress || "Selected Property"}
+              </span>
+              {(address.city || address.state || address.zipCode) && (
+                <span className="text-xs font-medium text-[#5A6E85] truncate mt-1">
+                  {[address.city, address.state, address.zipCode].filter(Boolean).join(", ")}
+                </span>
+              )}
+            </div>
+          </Tooltip>
+        </Marker>
         <MapEvents onChange={onChange} setPosition={setPosition} />
         <MapUpdater position={position} />
       </MapContainer>
