@@ -17,17 +17,13 @@ L.Icon.Default.mergeOptions({
 const premiumIcon = L.divIcon({
   className: "bg-transparent",
   html: `<div class="relative flex flex-col items-center justify-center">
-           <div class="absolute w-10 h-10 bg-blue-500/30 rounded-full animate-ping" style="animation-duration: 2.5s;"></div>
-           <div class="relative z-10 flex items-center justify-center w-11 h-11 bg-linear-to-tr from-blue-700 via-blue-600 to-indigo-500 rounded-full shadow-[0_8px_20px_rgba(37,99,235,0.45)] border-2 border-white transform transition-transform hover:scale-110">
-             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-white drop-shadow">
-               <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.724 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-             </svg>
-           </div>
-           <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[7px] border-t-indigo-600 -mt-1 shadow-sm"></div>
-           <div class="w-5 h-1.5 bg-black/30 rounded-full blur-[1.5px] mt-0.5"></div>
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0B2545" class="w-12 h-12 drop-shadow-md transform transition-transform hover:scale-105">
+             <path fill-rule="evenodd" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" clip-rule="evenodd" />
+           </svg>
+           <div class="w-4 h-1 bg-black/30 rounded-full blur-[1px] -mt-1"></div>
          </div>`,
-  iconSize: [44, 52],
-  iconAnchor: [22, 48],
+  iconSize: [48, 52],
+  iconAnchor: [24, 50],
 });
 
 interface MapPreviewProps {
@@ -161,26 +157,18 @@ export default function MapPreview({ address, onChange }: MapPreviewProps) {
           <Tooltip 
             permanent 
             direction="top" 
-            offset={[0, -48]}
+            offset={[0, -32]}
             className="premium-map-tooltip"
           >
-            <div className="flex items-center gap-2.5 max-w-55">
-              <div className="w-7 h-7 rounded-lg bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shrink-0">
-                <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div className="flex flex-col overflow-hidden">
-                <span className="font-bold text-xs text-white truncate tracking-wide">
-                  {address.streetAddress || "Selected Property"}
+            <div className="flex flex-col items-center text-center px-2 py-1 max-w-60">
+              <span className="font-bold text-sm text-[#0B2545] truncate tracking-tight">
+                {address.streetAddress || "Selected Property"}
+              </span>
+              {(address.city || address.state || address.zipCode) && (
+                <span className="text-xs font-medium text-[#5A6E85] truncate mt-1">
+                  {[address.city, address.state, address.zipCode].filter(Boolean).join(", ")}
                 </span>
-                {(address.city || address.state || address.zipCode) && (
-                  <span className="text-[11px] font-medium text-slate-300 truncate mt-0.5">
-                    {[address.city, address.state, address.zipCode].filter(Boolean).join(", ")}
-                  </span>
-                )}
-              </div>
+              )}
             </div>
           </Tooltip>
         </Marker>
