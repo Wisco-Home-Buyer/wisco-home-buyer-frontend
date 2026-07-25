@@ -161,7 +161,7 @@ export default function MapPreview({ address, onChange }: MapPreviewProps) {
           <Tooltip 
             permanent 
             direction="top" 
-            offset={[0, -28]}
+            offset={[0, -48]}
             className="premium-map-tooltip"
           >
             <div className="flex items-center gap-2.5 max-w-55">

@@ -120,7 +120,7 @@ export function Step1Address({
       </div>
 
       {/* Map Preview Container */}
-      <div className="relative w-full h-64 sm:h-80 rounded-2xl overflow-hidden border border-gray-150 shadow-2xs bg-slate-50 z-0">
+      <div className="relative w-full h-100 rounded-2xl overflow-hidden border border-gray-150 shadow-2xs bg-slate-50 z-0">
         <MapPreview address={formData} onChange={updateFormData} />
       </div>
 

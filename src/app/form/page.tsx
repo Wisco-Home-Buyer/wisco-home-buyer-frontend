@@ -314,7 +314,7 @@ export default function FormPage() {
 
   return (
     <div className="flex-1 bg-slate-50/50 pt-28 pb-16 md:pt-40 md:pb-24">
-      <div className="container mx-auto px-6 max-w-2xl">
+      <div className="container mx-auto px-6 max-w-4xl">
         <div className="space-y-6">
           {/* Progress Header */}
           {step !== 7 && (
