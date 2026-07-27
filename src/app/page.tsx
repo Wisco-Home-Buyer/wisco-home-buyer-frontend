@@ -11,11 +11,11 @@ import { FAQ } from "@/components/features/home/FAQ";
 import { CTABanner } from "@/components/features/home/CTABanner";
 
 export const metadata: Metadata = {
-  title: "Sell Your Wisconsin Home Fast for Cash — No Fees, No Repairs",
+  title: "Wisco Home Buyer",
   description:
     "Wisco Home Buyer pays cash for Wisconsin homes in any condition. Get a free offer in 24 hours. No agent fees, no repairs, close in as little as 7 days.",
   openGraph: {
-    title: "Sell Your Wisconsin Home Fast for Cash | Wisco Home Buyer",
+    title: "Wisco Home Buyer",
     description:
       "Get a free cash offer for your Wisconsin home — any condition, any situation. We close fast with zero fees.",
     url: "https://wiscohomebuyer.com",

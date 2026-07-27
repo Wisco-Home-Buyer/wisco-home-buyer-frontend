@@ -20,7 +20,7 @@ const marhey = Marhey({
 export const metadata: Metadata = {
   metadataBase: new URL("https://wiscohomebuyer.com"),
   title: {
-    default: "Wisco Home Buyer | Sell Your Wisconsin Home Fast for Cash",
+    default: "Wisco Home Buyer",
     template: "%s | Wisco Home Buyer",
   },
   description:
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://wiscohomebuyer.com",
     siteName: "Wisco Home Buyer",
-    title: "Wisco Home Buyer | Sell Your Wisconsin Home Fast for Cash",
+    title: "Wisco Home Buyer",
     description:
       "Get a free cash offer for your Wisconsin home. We buy houses as-is — no fees, no repairs, close in as little as 7 days.",
     images: [
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Wisco Home Buyer — Fast Cash Offers for Wisconsin Homes",
+        alt: "Wisco Home Buyer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wisco Home Buyer | Sell Your Wisconsin Home Fast for Cash",
+    title: "Wisco Home Buyer",
     description:
       "No repairs. No fees. Close in 7 days. Get your free cash offer today.",
     images: ["/og-image.jpg"],
