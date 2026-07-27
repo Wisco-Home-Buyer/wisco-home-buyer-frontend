@@ -85,6 +85,14 @@ export default function FormPage() {
     }
   }, [step, hasImages, formData, isLoaded]);
 
+  // Scroll to top whenever step changes
+  useEffect(() => {
+    if (isLoaded) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.dispatchEvent(new Event("scroll-to-top"));
+    }
+  }, [step, isLoaded]);
+
   const updateField = <K extends keyof typeof formData>(
     section: K,
     fields: Partial<(typeof formData)[K]> | string | string[]

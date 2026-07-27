@@ -62,11 +62,17 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
 
     window.addEventListener("hashchange", handleHashChange);
 
+    const handleScrollToTop = () => {
+      lenisRef.current?.scrollTo(0, { duration: 0.8 });
+    };
+    window.addEventListener("scroll-to-top", handleScrollToTop);
+
     // Clean up on unmount
     return () => {
       cancelAnimationFrame(rafId);
       lenisRef.current = null;
       window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("scroll-to-top", handleScrollToTop);
       lenis.destroy();
     };
   }, []);
