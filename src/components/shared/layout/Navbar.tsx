@@ -47,9 +47,9 @@ export function Navbar() {
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
         window.history.pushState(null, "", `#${hash}`);
+        window.dispatchEvent(new Event("hashchange"));
       }
     } else {
-      // On a different page — do a full navigation with hash so URL is correct
       e.preventDefault();
       router.push(`/#${hash}`);
     }
