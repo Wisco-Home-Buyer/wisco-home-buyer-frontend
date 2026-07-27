@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { usePathname } from "next/navigation";
@@ -11,6 +11,7 @@ interface SmoothScrollProps {
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
   const pathname = usePathname();
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     // Initialize Lenis smooth scroll
@@ -22,6 +23,8 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       smoothWheel: true,
       wheelMultiplier: 1,
     });
+
+    lenisRef.current = lenis;
 
     let rafId: number;
 
@@ -44,28 +47,45 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       }, 300);
     }
 
+    // Handle all hash link clicks site-wide (Footer, Hero, etc.)
+    const handleHashChange = () => {
+      const newHash = window.location.hash?.slice(1);
+      if (newHash) {
+        setTimeout(() => {
+          const el = document.getElementById(newHash);
+          if (el) {
+            lenisRef.current?.scrollTo(el, { offset: 0, duration: 1.2 });
+          }
+        }, 100);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
     // Clean up on unmount
     return () => {
       cancelAnimationFrame(rafId);
+      lenisRef.current = null;
+      window.removeEventListener("hashchange", handleHashChange);
       lenis.destroy();
     };
   }, []);
 
-  // On route change: scroll to hash section if present, otherwise scroll to top
+  // On route change: scroll to hash section, or reset to top via Lenis
   useEffect(() => {
     const hash = window.location.hash?.slice(1);
     if (hash) {
       setTimeout(() => {
         const el = document.getElementById(hash);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          lenisRef.current?.scrollTo(el, { offset: 0, duration: 1.2 });
         }
       }, 300);
     } else {
-      window.scrollTo(0, 0);
+      // Use Lenis to reset scroll — window.scrollTo(0,0) is ignored by Lenis
+      lenisRef.current?.scrollTo(0, { immediate: true });
     }
   }, [pathname]);
 
   return <>{children}</>;
 }
-

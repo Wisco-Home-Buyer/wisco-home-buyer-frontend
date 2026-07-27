@@ -15,50 +15,50 @@ if (typeof window !== "undefined") {
 export function CTABanner() {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    // Background slow zoom on scroll
-    gsap.fromTo(
-      ".cta-bg-img",
-      { scale: 1.15 },
-      {
-        scale: 1,
-        duration: 1.5,
-        ease: "power2.out",
+  useGSAP(
+    () => {
+      // Background slow zoom on scroll
+      gsap.fromTo(
+        ".cta-bg-img",
+        { scale: 1.15 },
+        {
+          scale: 1,
+          duration: 1.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: container.current,
+            start: "top 85%",
+            toggleActions: "play none none reset",
+          },
+        },
+      );
+
+      // Stagger animation for content on scroll
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container.current,
-          start: "top 85%",
+          start: "top 80%",
           toggleActions: "play none none reset",
-        }
-      }
-    );
+        },
+      });
 
-    // Stagger animation for content on scroll
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 80%",
-        toggleActions: "play none none reset",
-      }
-    });
-
-    tl.fromTo(
-      [
-        ".cta-badge",
-        ".cta-heading",
-        ".cta-desc",
-        ".cta-btn",
-        ".cta-footer"
-      ],
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }
-    );
-  }, { scope: container });
+      tl.fromTo(
+        [".cta-badge", ".cta-heading", ".cta-desc", ".cta-btn", ".cta-footer"],
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" },
+      );
+    },
+    { scope: container },
+  );
 
   return (
-    <section ref={container} className="relative py-20 md:py-28 overflow-hidden text-center flex flex-col items-center justify-center">
+    <section
+      ref={container}
+      className="relative py-20 md:py-28 overflow-hidden text-center flex flex-col items-center justify-center"
+    >
       {/* Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div 
+        <div
           className="cta-bg-img absolute inset-0 w-full h-full"
           style={{ transformOrigin: "center center" }}
         >
@@ -86,13 +86,14 @@ export function CTABanner() {
           Ready to Sell Your Wisconsin Home?
         </h2>
         <p className="cta-desc text-sm md:text-xl text-[#CBD5E1] font-medium max-w-2xl mx-auto leading-relaxed">
-          Join 500+ homeowners who chose the smarter, faster way to sell. Get your fair cash offer today.
+          Join 500+ homeowners who chose the smarter, faster way to sell. Get
+          your fair cash offer today.
         </p>
 
         <div className="cta-btn pt-4">
-          <Link 
-            href="/cash-offer" 
-            className="inline-block bg-[#4B6983] hover:bg-[#3f5c75] active:scale-95 text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+          <Link
+            href="/cash-offer"
+            className="inline-block bg-[#4B6983] hover:bg-[#3f5c75] duration-300 active:scale-95 text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-lg cursor-pointer"
           >
             Get My FREE Cash Offer!
           </Link>
@@ -105,4 +106,3 @@ export function CTABanner() {
     </section>
   );
 }
-
