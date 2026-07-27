@@ -51,9 +51,19 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     };
   }, []);
 
-  // Recalculate scroll position on route change
+  // On route change: scroll to hash section if present, otherwise scroll to top
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const hash = window.location.hash?.slice(1);
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return <>{children}</>;

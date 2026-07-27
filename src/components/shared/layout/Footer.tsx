@@ -50,14 +50,6 @@ export function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <Link
-                  href="/#about"
-                  className="hover:text-white transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/#how-it-works"
                   className="hover:text-white transition-colors"
                 >
@@ -118,9 +110,12 @@ export function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 shrink-0">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span className="font-medium text-xs md:text-sm text-slate-300">
+                <a
+                  href="tel:+14145550192"
+                  className="font-medium text-xs md:text-sm text-slate-300 hover:text-white transition-colors"
+                >
                   (414) 555-0192
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 shrink-0">

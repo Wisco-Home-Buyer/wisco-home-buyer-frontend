@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -118,9 +118,9 @@ export function FAQ() {
         </div>
 
         {/* Content Grid */}
-        <div className="faq-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="faq-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Column: Image */}
-          <div className="faq-image-wrapper relative w-full h-80 md:h-112.5 lg:h-full rounded-3xl overflow-hidden shadow-md">
+          <div className="faq-image-wrapper relative w-full h-80 md:h-130 lg:h-136 rounded-3xl overflow-hidden shadow-md">
             <Image
               src="/images/FAQImage.png"
               alt="Customer service representative"
@@ -151,28 +151,32 @@ export function FAQ() {
                       {item.question}
                     </span>
                     <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors duration-200 shrink-0 ml-4 cursor-pointer ${
+                      className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors duration-300 shrink-0 ml-4 cursor-pointer ${
                         isOpen
                           ? "bg-[#0b2545] text-white"
                           : "bg-white border border-slate-200 text-slate-400"
                       }`}
                     >
-                      {isOpen ? (
-                        <ChevronUp className="h-4 w-4" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4" />
-                      )}
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 ease-in-out ${
+                          isOpen ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
                     </div>
                   </button>
 
-                  {/* Answer Container with Collapsible Transition */}
+                  {/* Answer Container — CSS Grid animation (no height clipping, no scrollbar) */}
                   <div
-                    className={` overflow-hidden ${
-                      isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                    }`}
+                    className="grid transition-[grid-template-rows,opacity] duration-300 ease-in-out"
+                    style={{
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
+                      opacity: isOpen ? 1 : 0,
+                    }}
                   >
-                    <div className="px-6 pb-6 text-xs md:text-sm text-slate-500 leading-relaxed max-w-2xl">
-                      {item.answer}
+                    <div className="overflow-hidden">
+                      <div className="px-6 pb-6 text-xs md:text-sm text-slate-500 leading-relaxed max-w-2xl">
+                        {item.answer}
+                      </div>
                     </div>
                   </div>
                 </div>
