@@ -1,13 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
+import { usePathname } from "next/navigation";
 
 interface SmoothScrollProps {
   children: React.ReactNode;
 }
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
+  const pathname = usePathname();
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
@@ -19,31 +24,74 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       wheelMultiplier: 1,
     });
 
-    // Animation frame hook
+    lenisRef.current = lenis;
+
+    let rafId: number;
+
+    // Animation frame hook with proper cancellation
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Handle initial hash scroll — e.g. when navigating from /privacy-policy to /#faq
-    // Lenis blocks native hash scrolling, so we manually scroll after init
+    // Handle initial hash scroll
     const hash = window.location.hash?.slice(1);
     if (hash) {
       setTimeout(() => {
         const el = document.getElementById(hash);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          lenis.scrollTo(el, { offset: 0, duration: 1.2 });
         }
       }, 300);
     }
 
+    // Handle all hash link clicks site-wide (Footer, Hero, etc.)
+    const handleHashChange = () => {
+      const newHash = window.location.hash?.slice(1);
+      if (newHash) {
+        setTimeout(() => {
+          const el = document.getElementById(newHash);
+          if (el) {
+            lenisRef.current?.scrollTo(el, { offset: 0, duration: 1.2 });
+          }
+        }, 100);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    const handleScrollToTop = () => {
+      lenisRef.current?.scrollTo(0, { duration: 0.8 });
+    };
+    window.addEventListener("scroll-to-top", handleScrollToTop);
+
     // Clean up on unmount
     return () => {
+      cancelAnimationFrame(rafId);
+      lenisRef.current = null;
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("scroll-to-top", handleScrollToTop);
       lenis.destroy();
     };
   }, []);
+
+  // On route change: scroll to hash section, or reset to top via Lenis
+  useEffect(() => {
+    const hash = window.location.hash?.slice(1);
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          lenisRef.current?.scrollTo(el, { offset: 0, duration: 1.2 });
+        }
+      }, 300);
+    } else {
+      // Use Lenis to reset scroll — window.scrollTo(0,0) is ignored by Lenis
+      lenisRef.current?.scrollTo(0, { immediate: true });
+    }
+  }, [pathname]);
 
   return <>{children}</>;
 }

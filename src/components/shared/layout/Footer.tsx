@@ -32,7 +32,7 @@ export function Footer() {
               <div className="inline-flex items-center gap-2 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-xs font-bold text-slate-300">
                 <Image
                   src="/images/Accredited.svg"
-                  alt=""
+                  alt="BBB Accredited"
                   width={16}
                   height={16}
                   className="brightness-0 invert"
@@ -50,15 +50,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <Link
-                  href="#about"
-                  className="hover:text-white transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#how-it-works"
+                  href="/#how-it-works"
                   className="hover:text-white transition-colors"
                 >
                   How It Works
@@ -66,7 +58,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#why-us"
+                  href="/#why-us"
                   className="hover:text-white transition-colors"
                 >
                   Why Us
@@ -74,7 +66,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#testimonials"
+                  href="/#testimonials"
                   className="hover:text-white transition-colors"
                 >
                   Testimonials
@@ -118,9 +110,12 @@ export function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 shrink-0">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span className="font-medium text-xs md:text-sm text-slate-300">
+                <a
+                  href="tel:+14145550192"
+                  className="font-medium text-xs md:text-sm text-slate-300 hover:text-white transition-colors"
+                >
                   (414) 555-0192
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 shrink-0">
@@ -147,7 +142,7 @@ export function Footer() {
 
         {/* Bottom copyright and legal links */}
         <div className="border-t border-slate-800/80 pt-6 mt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
-          <span>© 2024 Wisco Home Buyer. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Wisco Home Buyer. All rights reserved.</span>
           <div className="flex gap-6">
             <Link
               href="/privacy-policy"

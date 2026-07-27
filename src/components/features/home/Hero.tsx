@@ -43,6 +43,15 @@ export function Hero() {
     { scope: container },
   );
 
+  const handleHowItWorksClick = () => {
+    const el = document.getElementById("how-it-works");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", "/#how-it-works");
+      window.dispatchEvent(new Event("hashchange"));
+    }
+  };
+
   return (
     <section
       ref={container}
@@ -91,15 +100,12 @@ export function Hero() {
                 Get My FREE Cash Offer!
               </Button>
             </Link>
-            <Link href="/#how-it-works" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-14 px-8 text-base cursor-pointer"
-              >
-                How It Works
-              </Button>
-            </Link>
+            <button
+              onClick={handleHowItWorksClick}
+              className="w-full sm:w-auto inline-flex items-center justify-center border border-gray-300 text-gray-700 hover:bg-gray-50 bg-white h-14 px-8 text-base cursor-pointer rounded-md font-medium transition-colors"
+            >
+              How It Works
+            </button>
           </div>
 
           {/* Trust Rating Section */}
@@ -143,7 +149,7 @@ export function Hero() {
                 height={16}
                 className="w-auto h-auto"
               />
-              Licensed & Insured
+              Licensed &amp; Insured
             </div>
             <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-gray-700 shadow-sm border border-gray-100">
               <Image
