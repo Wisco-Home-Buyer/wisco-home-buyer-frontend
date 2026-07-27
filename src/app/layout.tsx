@@ -79,7 +79,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${marhey.variable} h-full antialiased`}
+      className={`${manrope.variable} ${marhey.variable} antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ReduxProvider>

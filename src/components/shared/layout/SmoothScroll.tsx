@@ -2,12 +2,16 @@
 
 import React, { useEffect } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
+import { usePathname } from "next/navigation";
 
 interface SmoothScrollProps {
   children: React.ReactNode;
 }
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
+  const pathname = usePathname();
+
   useEffect(() => {
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
@@ -19,31 +23,39 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       wheelMultiplier: 1,
     });
 
-    // Animation frame hook
+    let rafId: number;
+
+    // Animation frame hook with proper cancellation
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Handle initial hash scroll — e.g. when navigating from /privacy-policy to /#faq
-    // Lenis blocks native hash scrolling, so we manually scroll after init
+    // Handle initial hash scroll
     const hash = window.location.hash?.slice(1);
     if (hash) {
       setTimeout(() => {
         const el = document.getElementById(hash);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          lenis.scrollTo(el, { offset: 0, duration: 1.2 });
         }
       }, 300);
     }
 
     // Clean up on unmount
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
 
+  // Recalculate scroll position on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return <>{children}</>;
 }
+
