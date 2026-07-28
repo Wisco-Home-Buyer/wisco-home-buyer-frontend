@@ -66,7 +66,7 @@ export function Hero() {
         }}
       >
         {/* Gradient Overlay for Text Readability - Responsive Wash */}
-        <div className="absolute inset-0 bg-linear-to-b from-white/95 via-white/80 to-white/70 md:bg-linear-to-r lg:from-white lg:via-transparent lg:to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-white/30 via-white/45 to-white/20 md:bg-linear-to-r lg:from-white lg:via-transparent lg:to-transparent backdrop-blur-[1px]"></div>
       </div>
 
       <div className="relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">
@@ -84,7 +84,7 @@ export function Hero() {
           </h1>
 
           {/* Subheading */}
-          <p className="hero-subheading text-lg text-gray-700 max-w-lg">
+          <p className="hero-subheading text-lg text-gray-900 font-medium max-w-lg leading-relaxed">
             Skip the agents, skip the repairs. Wisco Home Buyer gives you a fair
             cash offer in 24 hours — close in as little as 7 days.
           </p>
@@ -108,12 +108,12 @@ export function Hero() {
           </div>
 
           {/* Trust Rating Section */}
-          <div className="hero-trust flex items-center gap-4 pt-4">
-            <div className="flex -space-x-3">
+          <div className="hero-trust flex w-full sm:w-auto items-center justify-center sm:justify-start gap-3.5 bg-white backdrop-blur-sm px-6 h-14 rounded-full border border-white/50 shadow-xs">
+            <div className="flex -space-x-3 shrink-0">
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="h-10 w-10 rounded-full border-2 border-white bg-gray-300 overflow-hidden relative"
+                  className="h-9 w-9 rounded-full border-2 border-white bg-gray-300 overflow-hidden relative"
                 >
                   <Image
                     src={`/images/customers/${i}.jpg`}
@@ -131,15 +131,15 @@ export function Hero() {
                   <Star key={i} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <p className="text-sm text-gray-600">
-                <span className="font-bold text-gray-900">4.9/5</span> from 500+
-                homeowners
+              <p className="text-xs md:text-sm text-gray-900 font-semibold">
+                <span className="font-extrabold text-gray-950">4.9/5</span> from
+                500+ homeowners
               </p>
             </div>
           </div>
 
           {/* Bottom Trust Badges */}
-          <div className="hero-badges flex flex-wrap gap-3 pt-6">
+          <div className="hero-badges flex flex-wrap justify-center sm:justify-start gap-3 pt-6">
             <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-gray-700 shadow-sm border border-gray-100">
               <Image
                 src="/images/Licensed-Insured.svg"

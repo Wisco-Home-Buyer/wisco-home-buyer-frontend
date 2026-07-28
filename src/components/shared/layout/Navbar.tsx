@@ -57,13 +57,13 @@ export function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full transition-all duration-300 border-b border-slate-200/80 ${
         showSolidNavbar
-          ? "bg-white border-b border-gray-200/50 shadow-xs" 
-          : "bg-linear-to-r from-white via-transparent to-transparent border-b border-white"
+          ? "bg-linear-to-r from-white via-transparent to-transparent" 
+          : "bg-linear-to-r from-white via-transparent to-transparent"
       }`}
     >
-      <div className="flex h-20 items-center justify-between px-8 md:px-16">
+      <div className="flex h-20 items-center justify-between px-4 md:px-16">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link 
