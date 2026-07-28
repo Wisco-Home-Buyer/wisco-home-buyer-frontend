@@ -9,7 +9,7 @@ export interface ImpactCardProps {
 
 export function ImpactCard({ icon, value, title, description }: ImpactCardProps) {
   return (
-    <div className="bg-white border border-gray-100/80 rounded-3xl p-8 flex flex-col items-start text-left shadow-[0_10px_35px_rgba(0,0,0,0.03)] transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:-translate-y-1">
+    <div className="bg-white border border-gray-100/80 rounded-3xl p-8 flex flex-col items-center text-center sm:items-start sm:text-left shadow-[0_10px_35px_rgba(0,0,0,0.03)] transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:-translate-y-1">
       <div className="w-12 h-12 bg-[#eef3f7] text-[#0f2942] rounded-xl flex items-center justify-center">
         {icon}
       </div>

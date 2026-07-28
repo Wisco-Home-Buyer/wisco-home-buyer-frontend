@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="bg-[#081321] text-slate-400 text-sm py-16 px-4 md:px-16 border-t border-slate-900">
       <div className="max-w-7xl mx-auto">
         {/* Top Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 pb-8 md:pb-12">
           {/* Column 1: Logo & Info */}
           <div className="space-y-4">
             <div className="space-y-1">
@@ -42,62 +42,65 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Company */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
-              Company
-            </h4>
-            <ul className="space-y-2.5">
-              <li>
-                <Link
-                  href="/#how-it-works"
-                  className="hover:text-white transition-colors"
-                >
-                  How It Works
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/#why-us"
-                  className="hover:text-white transition-colors"
-                >
-                  Why Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/#testimonials"
-                  className="hover:text-white transition-colors"
-                >
-                  Testimonials
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Company & Legal Side-by-Side on Mobile */}
+          <div className="grid grid-cols-2 gap-6 md:contents">
+            {/* Column 2: Company */}
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-white">
+                Company
+              </h4>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link
+                    href="/#how-it-works"
+                    className="hover:text-white transition-colors"
+                  >
+                    How It Works
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/#why-us"
+                    className="hover:text-white transition-colors"
+                  >
+                    Why Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/#testimonials"
+                    className="hover:text-white transition-colors"
+                  >
+                    Testimonials
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Column 3: Legal */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
-              Legal
-            </h4>
-            <ul className="space-y-2.5">
-              <li>
-                <Link
-                  href="/privacy-policy"
-                  className="hover:text-white transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms-of-service"
-                  className="hover:text-white transition-colors"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
+            {/* Column 3: Legal */}
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-white">
+                Legal
+              </h4>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link
+                    href="/privacy-policy"
+                    className="hover:text-white transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/terms-of-service"
+                    className="hover:text-white transition-colors"
+                  >
+                    Terms of Service
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Column 4: Contact */}
