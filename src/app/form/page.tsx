@@ -80,7 +80,7 @@ export default function FormPage() {
     if (isLoaded) {
       localStorage.setItem(
         "tygry8-form-data",
-        JSON.stringify({ step, hasImages, formData })
+        JSON.stringify({ step, hasImages, formData }),
       );
     }
   }, [step, hasImages, formData, isLoaded]);
@@ -95,13 +95,14 @@ export default function FormPage() {
 
   const updateField = <K extends keyof typeof formData>(
     section: K,
-    fields: Partial<(typeof formData)[K]> | string | string[]
+    fields: Partial<(typeof formData)[K]> | string | string[],
   ) => {
     setFormData((prev) => ({
       ...prev,
-      [section]: typeof fields === "object" && !Array.isArray(fields)
-        ? { ...prev[section] as object, ...fields }
-        : fields,
+      [section]:
+        typeof fields === "object" && !Array.isArray(fields)
+          ? { ...(prev[section] as object), ...fields }
+          : fields,
     }));
   };
 
@@ -131,7 +132,7 @@ export default function FormPage() {
       address: {
         street: formData.address.streetAddress,
         city: formData.address.city,
-        state: formData.address.state, 
+        state: formData.address.state,
         zip: formData.address.zipCode,
         latitude: formData.address.latitude,
         longitude: formData.address.longitude,
@@ -139,34 +140,34 @@ export default function FormPage() {
       contact: {
         fullName: formData.contact.fullName,
         phone: formData.contact.phone,
-        email: formData.contact.email
+        email: formData.contact.email,
       },
       details: {
-        bedrooms: Number(formData.details.bedrooms) || 0,
+        bedrooms: Math.round(Number(formData.details.bedrooms) || 0),
         bathrooms: Number(formData.details.bathrooms) || 0,
-        squareFeet: Number(formData.details.squareFeet) || 0,
-        yearBuilt: Number(formData.details.yearBuilt) || 0,
-        lotSizeAcres: formData.details.lotSizeAcres
+        squareFeet: Math.round(Number(formData.details.squareFeet) || 0),
+        yearBuilt: Math.round(Number(formData.details.yearBuilt) || 0),
+        lotSizeAcres: formData.details.lotSizeAcres,
       },
       condition: {
         roofCondition: formData.condition.roofCondition,
         kitchenCondition: formData.condition.kitchenCondition,
         bathroomCondition: formData.condition.bathroomCondition,
         foundationCondition: formData.condition.foundationCondition,
-        otherRepairsNeeded: formData.condition.otherRepairsNeeded
+        otherRepairsNeeded: formData.condition.otherRepairsNeeded,
       },
       occupancy: formData.occupancy,
       timeline: formData.timeline,
-      imageUrls: formData.imageUrls
+      imageUrls: formData.imageUrls,
     };
 
     // console.log("Submitted Form Data (JSON Payload):", submissionPayload);
-    
+
     const toastId = toast.loading("Submitting your property details...");
-    
+
     try {
       await submitLead(submissionPayload).unwrap();
-      
+
       // Depending on how API returns success, adjust if needed
       toast.success("Lead submitted successfully!", { id: toastId });
       setIsSubmitted(true);
@@ -209,8 +210,8 @@ export default function FormPage() {
 
   const getDisplayStep = () => {
     if (step <= 7) return step;
-    if (step === 8) return 7; 
-    return 8; 
+    if (step === 8) return 7;
+    return 8;
   };
 
   const renderStep = () => {
@@ -331,10 +332,10 @@ export default function FormPage() {
                 <span>Step {getDisplayStep()} of 8</span>
                 <span className="text-gray-500">{getStepTitle()}</span>
               </div>
-              
+
               {/* Progress Bar */}
               <div className="w-full bg-gray-200/70 rounded-full h-1.5 overflow-hidden">
-                <div 
+                <div
                   className="bg-blue-950 h-full rounded-full transition-all duration-300"
                   style={{ width: `${(getDisplayStep() / 8) * 100}%` }}
                 />

@@ -97,7 +97,7 @@ export function Step3Details({
               type="number"
               required
               min="0"
-              step="0.5"
+              step="any"
               value={formData.bathrooms}
               onChange={(e) => {
                 const val = e.target.value;

@@ -209,3 +209,25 @@ div.leaflet-tooltip.premium-map-tooltip,
   background: #1d4ed8 !important;
   color: #ffffff !important;
 }
+
+/* Hero background image — responsive background-size */
+.hero-bg-img {
+  background-size: cover; /* mobile & tablet: maintain aspect ratio */
+}
+
+@media (min-width: 1024px) {
+  .hero-bg-img {
+    background-size: 100% 100%; /* desktop: full stretch as designed */
+  }
+}
+
+/* Hide number input spinner arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

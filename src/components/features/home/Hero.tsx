@@ -62,7 +62,6 @@ export function Hero() {
         className="hero-bg-img absolute inset-0 z-0 bg-gray-200"
         style={{
           backgroundImage: "url('/images/bannerImage.png')",
-          backgroundSize: "100% 100%",
           backgroundPosition: "center",
         }}
       >
