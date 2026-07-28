@@ -313,8 +313,8 @@ export default function FormPage() {
 
   if (isSubmitted) {
     return (
-      <div className="flex-1 bg-slate-50/50 pt-28 pb-16 md:pt-40 md:pb-24">
-        <div className="container mx-auto px-6 max-w-md">
+      <div className="flex-1 bg-slate-50/50 pt-24 pb-12 md:pt-36 md:pb-24">
+        <div className="container mx-auto px-4 max-w-md">
           <SuccessSubmitted />
         </div>
       </div>
@@ -322,12 +322,12 @@ export default function FormPage() {
   }
 
   return (
-    <div className="flex-1 bg-slate-50/50 pt-28 pb-16 md:pt-40 md:pb-24">
-      <div className="container mx-auto px-6 max-w-4xl">
-        <div className="space-y-6">
+    <div className="flex-1 bg-slate-50/50 pt-24 pb-12 md:pt-36 md:pb-24">
+      <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+        <div className="space-y-4 md:space-y-6">
           {/* Progress Header */}
           {step !== 7 && (
-            <div className="space-y-3">
+            <div className="space-y-2.5 md:space-y-3">
               <div className="flex justify-between items-center text-xs font-bold text-gray-400 uppercase tracking-widest">
                 <span>Step {getDisplayStep()} of 8</span>
                 <span className="text-gray-500">{getStepTitle()}</span>
@@ -344,7 +344,7 @@ export default function FormPage() {
           )}
 
           {/* Form Card Container */}
-          <div className="bg-white border border-gray-100 rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
+          <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
             {renderStep()}
           </div>
         </div>
