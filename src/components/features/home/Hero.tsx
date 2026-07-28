@@ -72,13 +72,15 @@ export function Hero() {
       <div className="relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">
         <div className="max-w-4xl space-y-8">
           {/* Top Badge */}
-          <div className="hero-badge inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
-            <span className="mr-2 h-2 w-2 rounded-full bg-gray-500"></span>
-            Wisconsin&apos;s Cash Home Buyer
+          <div className="flex justify-center sm:justify-start">
+            <div className="hero-badge inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
+              <span className="mr-2 h-2 w-2 rounded-full bg-gray-500"></span>
+              Wisconsin&apos;s Cash Home Buyer
+            </div>
           </div>
 
           {/* Heading */}
-          <h1 className="hero-heading text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1]">
+          <h1 className="hero-heading text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1] text-center sm:text-left">
             Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the
             Hassle.
           </h1>
@@ -108,7 +110,7 @@ export function Hero() {
           </div>
 
           {/* Trust Rating Section */}
-          <div className="hero-trust flex w-full sm:w-auto items-center justify-center sm:justify-start gap-3.5 bg-white backdrop-blur-sm px-6 h-14 rounded-full border border-white/50 shadow-xs">
+          <div className="hero-trust flex w-full sm:w-auto items-center justify-center sm:justify-start gap-3.5 bg-white sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none px-6 sm:px-0 h-14 sm:h-auto rounded-full sm:rounded-none border border-white/50 sm:border-none shadow-xs sm:shadow-none sm:pt-4">
             <div className="flex -space-x-3 shrink-0">
               {[1, 2, 3, 4].map((i) => (
                 <div

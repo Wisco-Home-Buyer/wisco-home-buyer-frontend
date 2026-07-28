@@ -59,7 +59,7 @@ export function Navbar() {
     <header 
       className={`fixed top-0 z-50 w-full transition-all duration-300 border-b border-slate-200/80 ${
         showSolidNavbar
-          ? "bg-linear-to-r from-white via-transparent to-transparent" 
+          ? "bg-white/90 border-b border-gray-200/50 backdrop-blur-[1px]" 
           : "bg-linear-to-r from-white via-transparent to-transparent"
       }`}
     >
