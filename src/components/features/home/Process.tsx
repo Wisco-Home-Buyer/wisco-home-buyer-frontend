@@ -80,18 +80,18 @@ export function Process() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="bg-white py-20 md:py-28">
+    <section ref={container} className="bg-white pt-12 pb-8 md:py-28">
       <div className="container mx-auto px-4 md:px-16">
         {/* Header */}
-        <div className="process-header text-center space-y-3 mb-16 md:mb-20 max-w-2xl mx-auto">
+        <div className="process-header text-center space-y-3 mb-12 md:mb-20 max-w-2xl mx-auto">
           <span className="text-xs font-bold text-blue-900 uppercase tracking-widest block">
             Simple Process
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
             Three Simple Steps to Your Cash Offer
           </h2>
-          <p className="text-md text-gray-600">
-            From inquiry to closing, we&apos;ve made the entire process transparent, <br /> fast, and hassle-free.
+          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
+            From inquiry to closing, we&apos;ve made the entire process transparent, <br className="hidden md:inline" /> fast, and hassle-free.
           </p>
         </div>
 

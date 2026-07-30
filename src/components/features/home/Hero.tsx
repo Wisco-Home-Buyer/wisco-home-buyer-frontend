@@ -62,30 +62,31 @@ export function Hero() {
         className="hero-bg-img absolute inset-0 z-0 bg-gray-200"
         style={{
           backgroundImage: "url('/images/bannerImage.png')",
-          backgroundSize: "100% 100%",
           backgroundPosition: "center",
         }}
       >
         {/* Gradient Overlay for Text Readability - Responsive Wash */}
-        <div className="absolute inset-0 bg-linear-to-b from-white/95 via-white/80 to-white/70 md:bg-linear-to-r lg:from-white lg:via-transparent lg:to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-white/30 via-white/45 to-white/20 md:bg-linear-to-r lg:from-white lg:via-transparent lg:to-transparent"></div>
       </div>
 
       <div className="relative z-10 px-4 md:px-16 pt-32 pb-12 md:pt-40 md:pb-24">
         <div className="max-w-4xl space-y-8">
           {/* Top Badge */}
-          <div className="hero-badge inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
-            <span className="mr-2 h-2 w-2 rounded-full bg-gray-500"></span>
-            Wisconsin&apos;s Cash Home Buyer
+          <div className="flex justify-center sm:justify-start">
+            <div className="hero-badge inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
+              <span className="mr-2 h-2 w-2 rounded-full bg-gray-500"></span>
+              Wisconsin&apos;s Cash Home Buyer
+            </div>
           </div>
 
           {/* Heading */}
-          <h1 className="hero-heading text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1]">
+          <h1 className="hero-heading text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1] text-center sm:text-left">
             Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the
             Hassle.
           </h1>
 
           {/* Subheading */}
-          <p className="hero-subheading text-lg text-gray-700 max-w-lg">
+          <p className="hero-subheading text-lg text-gray-900 font-medium max-w-lg leading-relaxed">
             Skip the agents, skip the repairs. Wisco Home Buyer gives you a fair
             cash offer in 24 hours — close in as little as 7 days.
           </p>
@@ -109,12 +110,12 @@ export function Hero() {
           </div>
 
           {/* Trust Rating Section */}
-          <div className="hero-trust flex items-center gap-4 pt-4">
-            <div className="flex -space-x-3">
+          <div className="hero-trust flex w-full sm:w-auto items-center justify-center sm:justify-start gap-3.5 bg-white sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none px-6 sm:px-0 h-14 sm:h-auto rounded-full sm:rounded-none border border-white/50 sm:border-none shadow-xs sm:shadow-none sm:pt-4">
+            <div className="flex -space-x-3 shrink-0">
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="h-10 w-10 rounded-full border-2 border-white bg-gray-300 overflow-hidden relative"
+                  className="h-9 w-9 rounded-full border-2 border-white bg-gray-300 overflow-hidden relative"
                 >
                   <Image
                     src={`/images/customers/${i}.jpg`}
@@ -132,15 +133,15 @@ export function Hero() {
                   <Star key={i} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <p className="text-sm text-gray-600">
-                <span className="font-bold text-gray-900">4.9/5</span> from 500+
-                homeowners
+              <p className="text-xs md:text-sm text-gray-900 font-semibold">
+                <span className="font-extrabold text-gray-950">4.9/5</span> from
+                500+ homeowners
               </p>
             </div>
           </div>
 
           {/* Bottom Trust Badges */}
-          <div className="hero-badges flex flex-wrap gap-3 pt-6">
+          <div className="hero-badges flex flex-wrap justify-center sm:justify-start gap-3 pt-6">
             <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-gray-700 shadow-sm border border-gray-100">
               <Image
                 src="/images/Licensed-Insured.svg"

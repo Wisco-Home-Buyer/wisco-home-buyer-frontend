@@ -67,7 +67,7 @@ export function Testimonials() {
   }, { scope: container });
 
   return (
-    <section ref={container} id="testimonials" className="bg-slate-50/30 py-16 md:py-24 border-b border-gray-100/50">
+    <section ref={container} id="testimonials" className="bg-slate-50/30 py-10 md:py-24 border-b border-gray-100/50">
       <div className="px-4 md:px-16 max-w-7xl mx-auto">
         {/* Header */}
         <div className="testimonials-header text-center space-y-3 mb-12 md:mb-16 max-w-2xl mx-auto">

@@ -51,13 +51,13 @@ export function Step4Condition({
         </p>
       </div>
 
-      <div className="space-y-5">
+      <div className="space-y-4 md:space-y-5">
         {sections.map((section) => (
-          <div key={section.key} className="space-y-2">
+          <div key={section.key} className="space-y-1.5 md:space-y-2">
             <span className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide">
               {section.label}
             </span>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {conditionOptions.map((option) => {
                 const isSelected = formData[section.key] === option.value;
                 return (
@@ -67,7 +67,7 @@ export function Step4Condition({
                     onClick={() =>
                       updateFormData({ [section.key]: option.value })
                     }
-                    className={`py-3 px-4 text-xs md:text-sm font-semibold rounded-xl border text-center transition-all cursor-pointer ${
+                    className={`py-2.5 px-2 sm:px-4 text-xs md:text-sm font-semibold rounded-xl border text-center transition-all cursor-pointer ${
                       isSelected
                         ? "bg-blue-950 border-blue-950 text-white shadow-2xs"
                         : "bg-white border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700"

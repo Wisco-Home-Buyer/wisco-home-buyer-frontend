@@ -75,7 +75,7 @@ export function Stats() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="bg-slate-50/50 py-16 md:py-24">
+    <section ref={container} className="bg-slate-50/50 py-10 md:py-24">
       <div className="px-4 md:px-16">
         {/* Header */}
         <div className="stats-header text-center space-y-3 mb-12 md:mb-16">
@@ -88,7 +88,7 @@ export function Stats() {
         </div>
 
         {/* Stats Grid */}
-        <div className="stats-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="stats-grid grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {statsData.map((stat, index) => (
             <div key={index} className="stats-card-wrapper">
               <StatCard

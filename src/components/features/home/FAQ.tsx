@@ -100,7 +100,7 @@ export function FAQ() {
     <section
       ref={container}
       id="faq"
-      className="bg-white py-16 md:py-24 border-b border-gray-100/50"
+      className="bg-white py-10 md:py-24 border-b border-gray-100/50"
     >
       <div className="px-4 md:px-16">
         {/* Header */}
