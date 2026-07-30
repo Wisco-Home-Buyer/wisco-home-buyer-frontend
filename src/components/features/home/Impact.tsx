@@ -30,7 +30,7 @@ export function Impact() {
       description: "Offer in your inbox fast",
     },
     {
-      icon: <FaHeart  className="h-5 w-5 fill-current" />,
+      icon: <FaHeart className="h-5 w-5 fill-current" />,
       value: "98%",
       title: "Customer Satisfaction",
       description: "5-star verified reviews",
@@ -43,43 +43,49 @@ export function Impact() {
     },
   ];
 
-  useGSAP(() => {
-    // Header trigger animation
-    gsap.fromTo(
-      ".impact-header",
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: ".impact-header",
-          start: "top 85%",
-          toggleActions: "play none none reset",
+  useGSAP(
+    () => {
+      // Header trigger animation
+      gsap.fromTo(
+        ".impact-header",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: ".impact-header",
+            start: "top 85%",
+            toggleActions: "play none none reset",
+          },
         },
-      }
-    );
+      );
 
-    // Cards staggered entry on scroll
-    gsap.fromTo(
-      ".impact-card-wrapper",
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: ".impact-grid",
-          start: "top 85%",
-          toggleActions: "play none none reset",
+      // Cards staggered entry on scroll
+      gsap.fromTo(
+        ".impact-card-wrapper",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: ".impact-grid",
+            start: "top 85%",
+            toggleActions: "play none none reset",
+          },
         },
-      }
-    );
-  }, { scope: container });
+      );
+    },
+    { scope: container },
+  );
 
   return (
-    <section ref={container} className="bg-slate-50/30 py-16 md:py-24 border-y border-gray-100/50">
+    <section
+      ref={container}
+      className="bg-slate-50/30 py-16 md:py-24 border-y border-gray-100/50"
+    >
       <div className="px-4 md:px-16 max-w-7xl mx-auto">
         {/* Header */}
         <div className="impact-header text-center space-y-3 mb-12 md:mb-16">
@@ -108,4 +114,3 @@ export function Impact() {
     </section>
   );
 }
-
