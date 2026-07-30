@@ -97,7 +97,7 @@ export function Advantages() {
   }, { scope: container });
 
   return (
-    <section ref={container} id="why-us" className="bg-slate-50/50 py-20 md:py-28">
+    <section ref={container} id="why-us" className="bg-slate-50/50 py-10 md:py-28">
       <div className="container mx-auto px-4 md:px-16">
         {/* Header */}
         <div className="adv-header text-center space-y-3 mb-16 md:mb-20 max-w-4xl mx-auto">

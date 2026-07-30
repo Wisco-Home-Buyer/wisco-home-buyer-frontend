@@ -116,7 +116,7 @@ export default function PrivacyPolicyPage() {
           {sections.map((section) => (
             <div
               key={section.title}
-              className="border-b border-gray-100 pb-10 last:border-0"
+              className="border-b border-gray-100 last:border-0 last:pb-0"
             >
               <h2 className="text-base font-bold text-[#0B2545] mb-3">
                 {section.title}
@@ -164,7 +164,7 @@ export default function PrivacyPolicyPage() {
         </div>
 
         {/* Back link */}
-        <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-6 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link
             href="/"
             className="text-sm font-bold text-[#0B2545] hover:text-blue-700 transition-colors"
