@@ -100,7 +100,7 @@ export function Advantages() {
     <section ref={container} id="why-us" className="bg-slate-50/50 py-10 md:py-28">
       <div className="container mx-auto px-4 md:px-16">
         {/* Header */}
-        <div className="adv-header text-center space-y-3 mb-16 md:mb-20 max-w-4xl mx-auto">
+        <div className="adv-header text-center space-y-3 mb-16 md:mb-20 max-w-4xl mx-auto opacity-0">
           <span className="text-xs font-bold text-blue-900 uppercase tracking-widest block">
             Our Advantage
           </span>
@@ -115,7 +115,7 @@ export function Advantages() {
         {/* Grid of Advantages */}
         <div className="adv-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {advantages.map((adv, index) => (
-            <div key={index} className="adv-card-wrapper">
+            <div key={index} className="adv-card-wrapper opacity-0">
               <AdvantageCard
                 icon={adv.icon}
                 title={adv.title}
