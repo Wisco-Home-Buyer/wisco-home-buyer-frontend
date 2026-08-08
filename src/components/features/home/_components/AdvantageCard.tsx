@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export interface AdvantageCardProps {
   icon: React.ReactNode;
@@ -8,16 +9,19 @@ export interface AdvantageCardProps {
   imageAlt: string;
 }
 
-export function AdvantageCard({ icon, title, description, imageSrc }: AdvantageCardProps) {
+export function AdvantageCard({ icon, title, description, imageSrc, imageAlt }: AdvantageCardProps) {
   return (
     <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col justify-center shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden relative min-h-48 h-full">
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url('${imageSrc}')`,
-        }}
-      />
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={imageSrc}
+          alt={imageAlt || title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover object-center"
+        />
+      </div>
       {/* Gradient Overlay for Text Readability */}
       <div className="absolute inset-0 z-10 bg-linear-to-r from-white via-white/80 to-transparent" />
 
