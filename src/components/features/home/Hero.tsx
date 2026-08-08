@@ -58,13 +58,15 @@ export function Hero() {
       className="relative w-full min-h-screen flex items-center"
     >
       {/* Background Image Container */}
-      <div
-        className="hero-bg-img absolute inset-0 z-0 bg-gray-200"
-        style={{
-          backgroundImage: "url('/images/bannerImage.png')",
-          backgroundPosition: "center",
-        }}
-      >
+      <div className="hero-bg-img absolute inset-0 z-0 bg-gray-200 opacity-0">
+        <Image
+          src="/images/bannerImage.png"
+          alt="Hero Background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-fill"
+        />
         {/* Gradient Overlay for Text Readability - Responsive Wash */}
         <div className="absolute inset-0 bg-linear-to-b from-white/30 via-white/45 to-white/20 md:bg-linear-to-r lg:from-white lg:via-transparent lg:to-transparent"></div>
       </div>
@@ -73,26 +75,26 @@ export function Hero() {
         <div className="max-w-4xl space-y-8">
           {/* Top Badge */}
           <div className="flex justify-center sm:justify-start">
-            <div className="hero-badge inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700">
+            <div className="hero-badge inline-flex items-center rounded-full bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-700 opacity-0">
               <span className="mr-2 h-2 w-2 rounded-full bg-gray-500"></span>
               Wisconsin&apos;s Cash Home Buyer
             </div>
           </div>
 
           {/* Heading */}
-          <h1 className="hero-heading text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1] text-center sm:text-left">
+          <h1 className="hero-heading text-3xl md:text-[68px] font-bold tracking-tight text-gray-900 leading-[1.1] text-center sm:text-left opacity-0">
             Sell Your Wisconsin Home Fast. Get a Fair Cash Offer Without the
             Hassle.
           </h1>
 
           {/* Subheading */}
-          <p className="hero-subheading text-lg text-gray-900 font-medium max-w-lg leading-relaxed">
+          <p className="hero-subheading text-lg text-gray-900 font-medium max-w-lg leading-relaxed opacity-0">
             Skip the agents, skip the repairs. Wisco Home Buyer gives you a fair
             cash offer in 24 hours — close in as little as 7 days.
           </p>
 
           {/* Action Buttons */}
-          <div className="hero-buttons flex flex-col sm:flex-row gap-4">
+          <div className="hero-buttons flex flex-col sm:flex-row gap-4 opacity-0">
             <Link href="/cash-offer" className="w-full sm:w-auto">
               <Button
                 size="lg"
@@ -110,7 +112,7 @@ export function Hero() {
           </div>
 
           {/* Trust Rating Section */}
-          <div className="hero-trust flex w-full sm:w-auto items-center justify-center sm:justify-start gap-3.5 bg-white sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none px-6 sm:px-0 h-14 sm:h-auto rounded-full sm:rounded-none border border-white/50 sm:border-none shadow-xs sm:shadow-none sm:pt-4">
+          <div className="hero-trust flex w-full sm:w-auto items-center justify-center sm:justify-start gap-3.5 bg-white sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none px-6 sm:px-0 h-14 sm:h-auto rounded-full sm:rounded-none border border-white/50 sm:border-none shadow-xs sm:shadow-none sm:pt-4 opacity-0">
             <div className="flex -space-x-3 shrink-0">
               {[1, 2, 3, 4].map((i) => (
                 <div
@@ -141,7 +143,7 @@ export function Hero() {
           </div>
 
           {/* Bottom Trust Badges */}
-          <div className="hero-badges flex flex-wrap justify-center sm:justify-start gap-3 pt-6">
+          <div className="hero-badges flex flex-wrap justify-center sm:justify-start gap-3 pt-6 opacity-0">
             <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-gray-700 shadow-sm border border-gray-100">
               <Image
                 src="/images/Licensed-Insured.svg"
