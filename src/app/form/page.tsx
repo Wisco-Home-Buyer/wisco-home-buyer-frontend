@@ -3,7 +3,10 @@
 
 import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { useSubmitLeadMutation } from "@/store/api/formApi";
+import {
+  useSubmitLeadMutation,
+  type EnrichmentSnapshot,
+} from "@/store/api/formApi";
 import { Step1Address } from "./_components/Step1Address";
 import { Step2Contact } from "./_components/Step2Contact";
 import { Step3Details } from "./_components/Step3Details";
@@ -20,6 +23,11 @@ export default function FormPage() {
   const [step, setStep] = useState(1);
   const [hasImages, setHasImages] = useState<boolean | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  // Captured from POST /leads response so SuccessSubmitted can poll
+  // GET /leads/:id/enrichment without a second round-trip on mount.
+  const [submittedLeadId, setSubmittedLeadId] = useState<string | null>(null);
+  const [submittedEnrichment, setSubmittedEnrichment] =
+    useState<EnrichmentSnapshot | null>(null);
   const [formData, setFormData] = useState({
     address: {
       streetAddress: "",
@@ -166,10 +174,19 @@ export default function FormPage() {
     const toastId = toast.loading("Submitting your property details...");
 
     try {
-      await submitLead(submissionPayload).unwrap();
+      const response = await submitLead(submissionPayload).unwrap();
 
-      // Depending on how API returns success, adjust if needed
+      // Capture the leadId + initial enrichment snapshot so SuccessSubmitted
+      // can keep polling for ATTOM data without a second round-trip on
+      // mount. Either field is optional — if the backend hasn't started
+      // enrichment by the time we POST, both will be null/undefined and
+      // SuccessSubmitted falls back to a generic "we got it" message.
+      const leadId = response?.id ?? null;
+      const enrichment = response?.enrichment ?? null;
+
       toast.success("Lead submitted successfully!", { id: toastId });
+      setSubmittedLeadId(leadId);
+      setSubmittedEnrichment(enrichment);
       setIsSubmitted(true);
       localStorage.removeItem("tygry8-form-data");
     } catch (error: any) {
@@ -315,7 +332,10 @@ export default function FormPage() {
     return (
       <div className="flex-1 bg-slate-50/50 pt-24 pb-12 md:pt-36 md:pb-24">
         <div className="container mx-auto px-4 max-w-md">
-          <SuccessSubmitted />
+          <SuccessSubmitted
+            leadId={submittedLeadId}
+            initialEnrichment={submittedEnrichment}
+          />
         </div>
       </div>
     );
