@@ -88,10 +88,10 @@ export function Footer() {
                     <Phone className="h-3.5 w-3.5" />
                   </div>
                   <a
-                    href="tel:+14145550192"
+                    href="tel:+19204702396"
                     className="font-medium text-xs md:text-sm text-slate-300 hover:text-white transition-colors"
                   >
-                    (414) 555-0192
+                    920-470-2396
                   </a>
                 </li>
                 <li className="flex items-center gap-2.5 min-w-0">
@@ -99,11 +99,11 @@ export function Footer() {
                     <Mail className="h-3.5 w-3.5" />
                   </div>
                   <a
-                    href="mailto:hello@wiscohomebuyer.com"
+                    href="mailto:info@wiscohomebuyer.com"
                     className="font-medium text-[11px] sm:text-xs md:text-sm text-slate-300 hover:text-white transition-colors truncate block"
-                    title="hello@wiscohomebuyer.com"
+                    title="info@wiscohomebuyer.com"
                   >
-                    hello@wiscohomebuyer.com
+                    info@wiscohomebuyer.com
                   </a>
                 </li>
                 <li className="flex items-center gap-2.5">
@@ -111,7 +111,7 @@ export function Footer() {
                     <MapPin className="h-3.5 w-3.5" />
                   </div>
                   <span className="font-medium text-xs md:text-sm text-slate-300">
-                    Milwaukee, WI
+                    Appleton, Wisconsin
                   </span>
                 </li>
               </ul>

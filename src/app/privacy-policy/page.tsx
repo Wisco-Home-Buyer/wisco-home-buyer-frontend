@@ -76,7 +76,7 @@ const sections = [
       "• Request correction of any inaccurate information.",
       "• Request deletion of your personal data, subject to our legal obligations.",
       "• Opt out of marketing communications at any time.",
-      "To exercise any of these rights, please contact us at hello@wiscohomebuyer.com.",
+      "To exercise any of these rights, please contact us at info@wiscohomebuyer.com.",
     ],
   },
   {
@@ -133,28 +133,28 @@ export default function PrivacyPolicyPage() {
                 {section.title === "10. Contact Us" && (
                   <div className="mt-4 space-y-3">
                     <a
-                      href="mailto:hello@wiscohomebuyer.com"
+                      href="mailto:info@wiscohomebuyer.com"
                       className="flex items-center gap-3 text-sm text-slate-600 hover:text-[#0B2545] transition-colors"
                     >
                       <div className="w-8 h-8 rounded-lg bg-[#0B2545]/5 flex items-center justify-center shrink-0">
                         <Mail className="h-4 w-4 text-[#0B2545]" />
                       </div>
-                      hello@wiscohomebuyer.com
+                      info@wiscohomebuyer.com
                     </a>
                     <a
-                      href="tel:+14145550192"
+                      href="tel:+19204702396"
                       className="flex items-center gap-3 text-sm text-slate-600 hover:text-[#0B2545] transition-colors"
                     >
                       <div className="w-8 h-8 rounded-lg bg-[#0B2545]/5 flex items-center justify-center shrink-0">
                         <Phone className="h-4 w-4 text-[#0B2545]" />
                       </div>
-                      (414) 555-0192
+                      920-470-2396
                     </a>
                     <div className="flex items-center gap-3 text-sm text-slate-600">
                       <div className="w-8 h-8 rounded-lg bg-[#0B2545]/5 flex items-center justify-center shrink-0">
                         <MapPin className="h-4 w-4 text-[#0B2545]" />
                       </div>
-                      Milwaukee, Wisconsin
+                      Appleton, Wisconsin
                     </div>
                   </div>
                 )}

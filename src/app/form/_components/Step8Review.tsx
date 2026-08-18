@@ -19,7 +19,7 @@ interface Step8ReviewProps {
       bedrooms: number | string;
       bathrooms: number | string;
       squareFeet: number | string;
-      yearBuilt: number | string;
+      houseAge: string;
     };
     condition: {
       roofCondition: string;
@@ -51,6 +51,19 @@ export function Step8Review({
       .split("_")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
+  };
+
+  const formatHouseAge = (val: string) => {
+    switch (val) {
+      case "YEARS_0_19":
+        return "0-19 years";
+      case "YEARS_20_49":
+        return "20-49 years";
+      case "YEARS_50_PLUS":
+        return "50+ years";
+      default:
+        return val;
+    }
   };
 
   return (
@@ -109,8 +122,8 @@ export function Step8Review({
               • Timeline: {formatValue(formData.timeline)} <br />• Occupancy:{" "}
               {formatValue(formData.occupancy)} <br />• Space:{" "}
               {formData.details.bedrooms} Beds / {formData.details.bathrooms}{" "}
-              Baths / {formData.details.squareFeet} SqFt <br />• Year Built:{" "}
-              {formData.details.yearBuilt} <br />• Condition: Roof (
+              Baths / {formData.details.squareFeet} SqFt <br />• House Age:{" "}
+              {formatHouseAge(formData.details.houseAge)} <br />• Condition: Roof (
               {formData.condition.roofCondition}), Kitchen (
               {formData.condition.kitchenCondition}), Bath (
               {formData.condition.bathroomCondition}), Foundation (
