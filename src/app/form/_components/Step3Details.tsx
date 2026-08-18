@@ -1,14 +1,20 @@
 "use client";
 
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronDown } from "lucide-react";
+
+export enum HouseAge {
+  YEARS_0_19 = "YEARS_0_19",
+  YEARS_20_49 = "YEARS_20_49",
+  YEARS_50_PLUS = "YEARS_50_PLUS",
+}
 
 interface Step3DetailsProps {
   formData: {
     bedrooms: number | string;
     bathrooms: number | string;
     squareFeet: number | string;
-    yearBuilt: number | string;
+    houseAge: HouseAge | string;
     lotSizeAcres: number | string;
   };
   updateFormData: (fields: Partial<Step3DetailsProps["formData"]>) => void;
@@ -47,7 +53,7 @@ export function Step3Details({
     formData.bedrooms !== "" &&
     formData.bathrooms !== "" &&
     formData.squareFeet !== "" &&
-    formData.yearBuilt !== "" &&
+    Boolean(formData.houseAge) &&
     formData.lotSizeAcres !== "";
 
   return (
@@ -61,71 +67,67 @@ export function Step3Details({
         </p>
       </div>
 
-      <div className="space-y-4">
-        {/* First Row: 2 columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Bedrooms */}
-          <div className="space-y-1.5">
-            <label
-              htmlFor="bedrooms"
-              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
-            >
-              Bedrooms
-            </label>
-            <input
-              id="bedrooms"
-              type="number"
-              required
-              min="0"
-              value={formData.bedrooms}
-              onChange={(e) => handleNumberChange("bedrooms", e.target.value)}
-              placeholder="e.g. 3"
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
-            />
-          </div>
-
-          {/* Bathrooms */}
-          <div className="space-y-1.5">
-            <label
-              htmlFor="bathrooms"
-              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
-            >
-              Bathrooms
-            </label>
-            <input
-              id="bathrooms"
-              type="number"
-              required
-              min="0"
-              step="any"
-              value={formData.bathrooms}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (val === "") {
-                  updateFormData({ bathrooms: "" });
-                } else {
-                  const parsed = parseFloat(val);
-                  if (!isNaN(parsed)) {
-                    updateFormData({ bathrooms: parsed });
-                  }
-                }
-              }}
-              placeholder="e.g. 2"
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
-            />
-          </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+        {/* Bedrooms */}
+        <div className="space-y-1.5">
+          <label
+            htmlFor="bedrooms"
+            className="block text-xs font-bold text-[#0B2545]/85 uppercase tracking-wide"
+          >
+            Bedrooms
+          </label>
+          <input
+            id="bedrooms"
+            type="number"
+            required
+            min="0"
+            value={formData.bedrooms}
+            onChange={(e) => handleNumberChange("bedrooms", e.target.value)}
+            placeholder="e.g. 3"
+            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-[#0B2545]/10 transition-all shadow-2xs font-medium"
+          />
         </div>
 
-        {/* Second Row: 3 columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {/* Square Feet */}
-          <div className="space-y-1.5">
-            <label
-              htmlFor="squareFeet"
-              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
-            >
-              Square Feet
-            </label>
+        {/* Bathrooms */}
+        <div className="space-y-1.5">
+          <label
+            htmlFor="bathrooms"
+            className="block text-xs font-bold text-[#0B2545]/85 uppercase tracking-wide"
+          >
+            Bathrooms
+          </label>
+          <input
+            id="bathrooms"
+            type="number"
+            required
+            min="0"
+            step="any"
+            value={formData.bathrooms}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === "") {
+                updateFormData({ bathrooms: "" });
+              } else {
+                const parsed = parseFloat(val);
+                if (!isNaN(parsed)) {
+                  updateFormData({ bathrooms: parsed });
+                }
+              }
+            }}
+            placeholder="e.g. 2"
+            className="w-full bg-white border focus:border-[#0B2545] rounded-xl px-4 py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-[#0B2545]/10 transition-all shadow-2xs font-medium"
+          />
+        </div>
+
+        {/* Square Feet */}
+        <div className="space-y-1.5">
+          <label
+            htmlFor="squareFeet"
+            className="block text-xs font-bold text-[#0B2545]/85 uppercase tracking-wide"
+          >
+            Square Feet
+          </label>
+          <div className="relative">
             <input
               id="squareFeet"
               type="number"
@@ -134,18 +136,23 @@ export function Step3Details({
               value={formData.squareFeet}
               onChange={(e) => handleNumberChange("squareFeet", e.target.value)}
               placeholder="e.g. 1500"
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
+              className="w-full bg-white border focus:border-[#0B2545] rounded-xl pl-4 pr-16 py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-[#0B2545]/10 transition-all shadow-2xs font-medium"
             />
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-xs font-semibold text-gray-400">
+              sq ft
+            </span>
           </div>
+        </div>
 
-          {/* Lot Size in Acres */}
-          <div className="space-y-1.5">
-            <label
-              htmlFor="lotSizeAcres"
-              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
-            >
-              Lot Size (Acres)
-            </label>
+        {/* Lot Size in Acres */}
+        <div className="space-y-1.5">
+          <label
+            htmlFor="lotSizeAcres"
+            className="block text-xs font-bold text-[#0B2545]/85 uppercase tracking-wide"
+          >
+            Lot Size (Acres)
+          </label>
+          <div className="relative">
             <input
               id="lotSizeAcres"
               type="number"
@@ -157,29 +164,40 @@ export function Step3Details({
                 handleNumberChange("lotSizeAcres", e.target.value)
               }
               placeholder="e.g. 0.15"
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
+              className="w-full bg-white border focus:border-[#0B2545] rounded-xl pl-4 pr-16 py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-[#0B2545]/10 transition-all shadow-2xs font-medium"
             />
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-xs font-semibold text-gray-400">
+              acres
+            </span>
           </div>
+        </div>
 
-          {/* Year Built */}
-          <div className="space-y-1.5">
-            <label
-              htmlFor="yearBuilt"
-              className="text-xs font-bold text-[#0B2545]/80 uppercase tracking-wide"
-            >
-              Year Built
-            </label>
-            <input
-              id="yearBuilt"
-              type="number"
+        {/* How old the house is */}
+        <div className="sm:col-span-2 space-y-1.5">
+          <label
+            htmlFor="houseAge"
+            className="block text-xs font-bold text-[#0B2545]/85 uppercase tracking-wide"
+          >
+            How old is the house?
+          </label>
+          <div className="relative">
+            <select
+              id="houseAge"
               required
-              min="1700"
-              max={new Date().getFullYear()}
-              value={formData.yearBuilt}
-              onChange={(e) => handleNumberChange("yearBuilt", e.target.value)}
-              placeholder="e.g. 1950"
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none transition-colors shadow-2xs"
-            />
+              value={formData.houseAge || ""}
+              onChange={(e) => updateFormData({ houseAge: e.target.value })}
+              className="w-full bg-white border focus:border-[#0B2545] rounded-xl px-4 py-3 text-sm text-[#0B2545] focus:outline-none focus:ring-4 focus:ring-[#0B2545]/10 transition-all shadow-2xs appearance-none cursor-pointer pr-10 font-medium"
+            >
+              <option value="" disabled className="text-gray-400">
+                Select age
+              </option>
+              <option value={HouseAge.YEARS_0_19}>0-19 years</option>
+              <option value={HouseAge.YEARS_20_49}>20-49 years</option>
+              <option value={HouseAge.YEARS_50_PLUS}>50+ years</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+              <ChevronDown className="h-4 w-4" />
+            </div>
           </div>
         </div>
       </div>

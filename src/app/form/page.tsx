@@ -46,7 +46,7 @@ export default function FormPage() {
       bedrooms: "" as number | string,
       bathrooms: "" as number | string,
       squareFeet: "" as number | string,
-      yearBuilt: "" as number | string,
+      houseAge: "",
       lotSizeAcres: "" as number | string,
     },
     condition: {
@@ -154,7 +154,7 @@ export default function FormPage() {
         bedrooms: Math.round(Number(formData.details.bedrooms) || 0),
         bathrooms: Number(formData.details.bathrooms) || 0,
         squareFeet: Math.round(Number(formData.details.squareFeet) || 0),
-        yearBuilt: Math.round(Number(formData.details.yearBuilt) || 0),
+        houseAge: formData.details.houseAge,
         lotSizeAcres: formData.details.lotSizeAcres,
       },
       condition: {
