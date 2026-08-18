@@ -56,11 +56,11 @@ export function Step8Review({
   const formatHouseAge = (val: string) => {
     switch (val) {
       case "YEARS_0_19":
-        return "0-19 years";
+        return "0-19";
       case "YEARS_20_49":
-        return "20-49 years";
+        return "20-49";
       case "YEARS_50_PLUS":
-        return "50+ years";
+        return "50+";
       default:
         return val;
     }
@@ -123,8 +123,8 @@ export function Step8Review({
               {formatValue(formData.occupancy)} <br />• Space:{" "}
               {formData.details.bedrooms} Beds / {formData.details.bathrooms}{" "}
               Baths / {formData.details.squareFeet} SqFt <br />• House Age:{" "}
-              {formatHouseAge(formData.details.houseAge)} <br />• Condition: Roof (
-              {formData.condition.roofCondition}), Kitchen (
+              {formatHouseAge(formData.details.houseAge)} <br />• Condition:
+              Roof ({formData.condition.roofCondition}), Kitchen (
               {formData.condition.kitchenCondition}), Bath (
               {formData.condition.bathroomCondition}), Foundation (
               {formData.condition.foundationCondition}) <br />• Repairs:{" "}

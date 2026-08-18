@@ -12,7 +12,7 @@ const sections = [
   {
     title: "1. Acceptance of Terms",
     content: [
-      'By accessing and using the Wisco Home Buyer website (wiscohomebuyer.com) or by submitting a cash offer request, you agree to be legally bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.',
+      "By accessing and using the Wisco Home Buyer website (wiscohomebuyer.com) or by submitting a cash offer request, you agree to be legally bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.",
       "These terms apply to all visitors, homeowners, and any other users of our website or services.",
     ],
   },
@@ -135,10 +135,7 @@ export default function TermsOfServicePage() {
               </h2>
               <div className="space-y-2">
                 {section.content.map((line, i) => (
-                  <p
-                    key={i}
-                    className="text-slate-600 text-sm leading-relaxed"
-                  >
+                  <p key={i} className="text-slate-600 text-sm leading-relaxed">
                     {line}
                   </p>
                 ))}

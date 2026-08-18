@@ -191,9 +191,9 @@ export function Step3Details({
               <option value="" disabled className="text-gray-400">
                 Select age
               </option>
-              <option value={HouseAge.YEARS_0_19}>0-19 years</option>
-              <option value={HouseAge.YEARS_20_49}>20-49 years</option>
-              <option value={HouseAge.YEARS_50_PLUS}>50+ years</option>
+              <option value={HouseAge.YEARS_0_19}>0-19</option>
+              <option value={HouseAge.YEARS_20_49}>20-49</option>
+              <option value={HouseAge.YEARS_50_PLUS}>50+</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
               <ChevronDown className="h-4 w-4" />
