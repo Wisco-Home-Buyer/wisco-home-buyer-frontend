@@ -121,7 +121,9 @@ export function Footer() {
 
         {/* Bottom copyright and legal links */}
         <div className="border-t border-slate-800/80 pt-6 mt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
-          <span>© {new Date().getFullYear()} Wisco Home Buyer. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} Wisco Home Buyer. All rights reserved.
+          </span>
           <div className="flex gap-6">
             <Link
               href="/privacy-policy"

@@ -155,7 +155,7 @@ export default function FormPage() {
         bathrooms: Number(formData.details.bathrooms) || 0,
         squareFeet: Math.round(Number(formData.details.squareFeet) || 0),
         houseAge: formData.details.houseAge,
-        lotSizeAcres: formData.details.lotSizeAcres,
+        lotSizeAcres: Number(formData.details.lotSizeAcres) || 0,
       },
       condition: {
         roofCondition: formData.condition.roofCondition,

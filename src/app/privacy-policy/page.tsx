@@ -123,10 +123,7 @@ export default function PrivacyPolicyPage() {
               </h2>
               <div className="space-y-2">
                 {section.content.map((line, i) => (
-                  <p
-                    key={i}
-                    className="text-slate-600 text-sm leading-relaxed"
-                  >
+                  <p key={i} className="text-slate-600 text-sm leading-relaxed">
                     {line}
                   </p>
                 ))}
