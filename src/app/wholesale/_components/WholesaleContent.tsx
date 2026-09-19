@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { TrendingUp, ShieldCheck, Zap } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import {
   useSubmitBuyerLeadMutation,
   type BuyerReferralSource,
@@ -68,6 +70,7 @@ const PARAM_MAP: Record<keyof UtmFields, string> = {
 };
 
 export function WholesaleContent() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [submitBuyerLead, { isLoading }] = useSubmitBuyerLeadMutation();
 
   const [name, setName] = useState("");
@@ -164,18 +167,52 @@ export function WholesaleContent() {
     },
   ];
 
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.fromTo(
+        ".wholesale-headline",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.7, delay: 0.1 }
+      )
+        .fromTo(
+          ".wholesale-desc",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6 },
+          "-=0.4"
+        )
+        .fromTo(
+          ".wholesale-perk",
+          { opacity: 0, x: -20 },
+          { opacity: 1, x: 0, duration: 0.5, stagger: 0.1 },
+          "-=0.3"
+        )
+        .fromTo(
+          ".wholesale-form-card",
+          { opacity: 0, y: 40, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.8 },
+          "-=0.8"
+        );
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <div className="flex-1 bg-white pt-32 pb-12 md:pt-48 md:pb-24">
+    <div
+      ref={containerRef}
+      className="flex-1 bg-white pt-32 pb-12 md:pt-48 md:pb-24"
+    >
       <div className="w-full max-w-7xl mx-auto px-4 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Headline + perks */}
           <div className="lg:col-span-6 space-y-6 md:space-y-8 lg:sticky lg:top-32">
             <div className="space-y-3 md:space-y-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B2545] tracking-tight leading-tight">
+              <h1 className="wholesale-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B2545] tracking-tight leading-tight">
                 Join Our Buyer&apos;s List and Get Access to Off-Market Deals
                 Today!
               </h1>
-              <p className="text-sm md:text-lg text-gray-500 font-medium leading-relaxed max-w-xl">
+              <p className="wholesale-desc text-sm md:text-lg text-gray-500 font-medium leading-relaxed max-w-xl">
                 We buy discounted Wisconsin properties every week. Tell us
                 where you invest and we&apos;ll send new deals straight to your
                 inbox and phone — before they&apos;re listed anywhere else.
@@ -184,7 +221,7 @@ export function WholesaleContent() {
 
             <div className="space-y-3 md:space-y-4 max-w-md">
               {perks.map((perk) => (
-                <div key={perk.title} className="flex items-start gap-3">
+                <div key={perk.title} className="wholesale-perk flex items-start gap-3">
                   <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
                     <perk.icon className="h-4.5 w-4.5 text-blue-900" />
                   </div>
@@ -204,7 +241,7 @@ export function WholesaleContent() {
           {/* Right Column: Form / Success */}
           <div className="lg:col-span-6">
             {isSubmitted ? (
-              <div className="bg-white border-x border-b border-t-4 border-t-blue-950 border-gray-150 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-md flex flex-col items-center space-y-4 md:space-y-6 text-center">
+              <div className="wholesale-form-card bg-white border-x border-b border-t-4 border-t-blue-950 border-gray-150 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-md flex flex-col items-center space-y-4 md:space-y-6 text-center">
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500 shadow-2xs">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +280,7 @@ export function WholesaleContent() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="bg-slate-50 border border-gray-100 rounded-3xl p-5 md:p-8 space-y-6 shadow-md drop-shadow-xl"
+                className="wholesale-form-card bg-slate-50 border border-gray-100 rounded-3xl p-5 md:p-8 space-y-6 shadow-md drop-shadow-xl"
               >
                 <div className="space-y-1">
                   <h2 className="text-xl md:text-2xl font-bold text-[#0B2545] tracking-tight">
