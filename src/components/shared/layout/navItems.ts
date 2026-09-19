@@ -20,4 +20,8 @@ export const navItems: NavItem[] = [
     label: "FAQ",
     href: "/#faq",
   },
+  {
+    label: "Wholesale",
+    href: "/wholesale",
+  },
 ];
