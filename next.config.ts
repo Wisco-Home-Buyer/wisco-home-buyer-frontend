@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "2.24.127.98",
       },
+      {
+        protocol: "https",
+        hostname: "api.wiscohomebuyer.com",
+      },
     ],
   },
   async rewrites() {
