@@ -35,11 +35,12 @@ export function Navbar() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
+    setIsOpen(false);
+
     const hashIndex = href.indexOf("#");
     if (hashIndex === -1) return;
 
     const hash = href.slice(hashIndex + 1);
-    setIsOpen(false);
 
     if (pathname === "/") {
       e.preventDefault();
