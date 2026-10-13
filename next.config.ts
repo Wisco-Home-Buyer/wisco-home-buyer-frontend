@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
 
-const apiOrigin =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
-  "https://tygry8.saikat.com.bd";
+const configuredApiOrigin = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+
+if (!configuredApiOrigin && process.env.NODE_ENV === "production") {
+  throw new Error("NEXT_PUBLIC_API_URL must be set for production builds");
+}
+
+const apiOrigin = configuredApiOrigin || "http://localhost:3000";
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -10,23 +14,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "i.pravatar.cc",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "tygry8.saikat.com.bd",
-      },
-      {
-        protocol: "http",
-        hostname: "2.24.127.98",
-      },
-      {
-        protocol: "https",
         hostname: "api.wiscohomebuyer.com",
+      },
+      {
+        protocol: "https",
+        hostname: "wiscohomebuyer.com",
       },
     ],
   },
