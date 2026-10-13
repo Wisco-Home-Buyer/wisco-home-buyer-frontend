@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/form/", "/api/"],
+      disallow: ["/form", "/api/"],
     },
     sitemap: "https://wiscohomebuyer.com/sitemap.xml",
   };
