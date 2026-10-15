@@ -24,4 +24,8 @@ export const navItems: NavItem[] = [
     label: "Wholesale",
     href: "/wholesale",
   },
+  {
+    label: "Listings",
+    href: "/wholesale-listings",
+  },
 ];
