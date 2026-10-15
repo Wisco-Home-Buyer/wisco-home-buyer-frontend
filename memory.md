@@ -28,3 +28,6 @@ Open items: compress `public/images` (about 19 MB of PNG), remove `unoptimized` 
 
 ## Wholesale listings (branch feat/wholesale-listings, 2026-10-16, uncommitted)
 - Data from `/api/wholesale-listings/public` via `src/lib/wholesale-listings.ts`; nav item 'Listings' and sitemap entry added. YouTube/Vimeo links are embedded. Detail page has an 'I'm interested' form (AVAILABLE listings only).
+
+## Listing video player (branch feat/listing-video-upload, 2026-10-16)
+- Listing detail plays videos uploaded through the dashboard with a native `<video>` (URL `video-<uuid>.mp4|mov|webm`); older YouTube/Vimeo links still embed. Needs the server upload endpoint and the dashboard change.
