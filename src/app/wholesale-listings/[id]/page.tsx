@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import {
   fetchPublicListing,
   formatPrice,
+  isUploadedVideo,
+  resolveAssetUrl,
   STATUS_LABELS,
   toEmbedUrl,
 } from "@/lib/wholesale-listings";
@@ -65,7 +67,17 @@ export default async function WholesaleListingPage({
           <div className="lg:col-span-7 space-y-4">
             <ListingGallery images={listing.images} title={listing.title} />
 
-            {embedUrl ? (
+            {isUploadedVideo(listing.videoUrl) && listing.videoUrl ? (
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                src={resolveAssetUrl(listing.videoUrl)}
+                className="w-full aspect-video rounded-2xl bg-black"
+              >
+                Your browser cannot play this video.
+              </video>
+            ) : embedUrl ? (
               <div className="aspect-video rounded-2xl overflow-hidden bg-slate-100">
                 <iframe
                   src={embedUrl}

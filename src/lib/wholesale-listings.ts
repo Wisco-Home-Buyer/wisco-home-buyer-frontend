@@ -81,6 +81,12 @@ export function formatPrice(price: number): string {
   }).format(price);
 }
 
+/** True for a video file uploaded to our own server (`video-<uuid>.mp4|mov|webm`). */
+export function isUploadedVideo(videoUrl: string | null | undefined): boolean {
+  if (!videoUrl) return false;
+  return /\/video-[0-9a-f-]{36}\.(mp4|mov|webm)$/i.test(videoUrl.split("?")[0]);
+}
+
 /** Returns an embeddable URL for YouTube / Vimeo links, or null for anything else. */
 export function toEmbedUrl(videoUrl: string): string | null {
   let url: URL;
