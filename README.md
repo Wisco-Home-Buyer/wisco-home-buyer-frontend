@@ -61,6 +61,11 @@ src/
 └── store/          # RTK Query base API and per-feature endpoints
 ```
 
+## CI
+
+GitHub Actions (`.github/workflows/ci.yml`) runs lint, `tsc --noEmit` and the
+production build on every pull request and on pushes to `main`.
+
 ## Deployment
 
 `output: "standalone"` Docker build. Set `NEXT_PUBLIC_API_URL` at build time. Add new
