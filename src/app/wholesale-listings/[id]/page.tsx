@@ -4,11 +4,11 @@ import { notFound } from "next/navigation";
 import {
   fetchPublicListing,
   formatPrice,
-  resolveAssetUrl,
   STATUS_LABELS,
   toEmbedUrl,
 } from "@/lib/wholesale-listings";
 import { InterestForm } from "../_components/InterestForm";
+import { ListingGallery } from "../_components/ListingGallery";
 
 export const dynamic = "force-dynamic";
 
@@ -63,34 +63,7 @@ export default async function WholesaleListingPage({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-7 space-y-4">
-            {listing.images.length > 0 ? (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={resolveAssetUrl(listing.images[0])}
-                  alt={listing.title}
-                  className="w-full aspect-4/3 object-cover rounded-2xl md:rounded-3xl bg-slate-100"
-                />
-                {listing.images.length > 1 && (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {listing.images.slice(1).map((url, index) => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        key={url}
-                        src={resolveAssetUrl(url)}
-                        alt={`${listing.title} photo ${index + 2}`}
-                        loading="lazy"
-                        className="w-full aspect-4/3 object-cover rounded-xl bg-slate-100"
-                      />
-                    ))}
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="w-full aspect-4/3 rounded-2xl md:rounded-3xl bg-slate-100 flex items-center justify-center text-sm font-semibold text-gray-400">
-                No photos yet
-              </div>
-            )}
+            <ListingGallery images={listing.images} title={listing.title} />
 
             {embedUrl ? (
               <div className="aspect-video rounded-2xl overflow-hidden bg-slate-100">

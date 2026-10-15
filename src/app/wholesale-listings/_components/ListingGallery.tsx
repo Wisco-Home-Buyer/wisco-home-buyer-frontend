@@ -1,0 +1,155 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import { X } from "lucide-react";
+import { resolveAssetUrl } from "@/lib/wholesale-listings";
+
+interface ListingGalleryProps {
+  images: string[];
+  title: string;
+}
+
+export function ListingGallery({ images, title }: ListingGalleryProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const urls = images.map(resolveAssetUrl);
+  const isOpen = openIndex !== null && urls[openIndex] !== undefined;
+
+  const step = useCallback(
+    (delta: number) => {
+      setOpenIndex((current) =>
+        current === null
+          ? null
+          : (current + delta + urls.length) % urls.length
+      );
+    },
+    [urls.length]
+  );
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenIndex(null);
+      if (event.key === "ArrowLeft") step(-1);
+      if (event.key === "ArrowRight") step(1);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+    closeRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen, step]);
+
+  if (urls.length === 0) {
+    return (
+      <div className="w-full aspect-4/3 rounded-2xl md:rounded-3xl bg-slate-100 flex items-center justify-center text-sm font-semibold text-gray-400">
+        No photos yet
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpenIndex(0)}
+        aria-label="View photo 1 larger"
+        className="block w-full cursor-zoom-in"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={urls[0]}
+          alt={title}
+          className="w-full aspect-4/3 object-cover rounded-2xl md:rounded-3xl bg-slate-100"
+        />
+      </button>
+
+      {urls.length > 1 && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {urls.slice(1).map((url, index) => (
+            <button
+              key={url}
+              type="button"
+              onClick={() => setOpenIndex(index + 1)}
+              aria-label={`View photo ${index + 2} larger`}
+              className="block cursor-zoom-in"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={url}
+                alt={`${title} photo ${index + 2}`}
+                loading="lazy"
+                className="w-full aspect-4/3 object-cover rounded-xl bg-slate-100"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {isOpen && openIndex !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Photo ${openIndex + 1} of ${urls.length}`}
+          className="fixed inset-0 z-100 flex items-center justify-center bg-slate-950/85 p-4"
+          onClick={() => setOpenIndex(null)}
+        >
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={() => setOpenIndex(null)}
+            aria-label="Close photo"
+            className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {urls.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(-1);
+                }}
+                aria-label="Previous photo"
+                className="absolute left-3 sm:left-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl leading-none"
+              >
+                &lsaquo;
+              </button>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(1);
+                }}
+                aria-label="Next photo"
+                className="absolute right-3 sm:right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl leading-none"
+              >
+                &rsaquo;
+              </button>
+            </>
+          )}
+
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={urls[openIndex]}
+            alt={`${title} photo ${openIndex + 1}`}
+            onClick={(event) => event.stopPropagation()}
+            className="max-w-full max-h-[90vh] object-contain rounded-xl"
+          />
+
+          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-bold text-white/80">
+            {openIndex + 1} / {urls.length}
+          </p>
+        </div>
+      )}
+    </>
+  );
+}
