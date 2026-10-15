@@ -5,7 +5,7 @@ Public website for wiscohomebuyer.com, a Wisconsin cash home-buyer lead-gen busi
 
 ## Tech stack and architecture
 Next.js App Router (breaking-change version, read `node_modules/next/dist/docs/` first), React, TypeScript, Tailwind, shadcn/base-ui, Redux Toolkit (RTK Query in `src/store/api/`), GSAP + Lenis, Leaflet (dynamic import), Sonner.
-- Routes: `/` landing, `/cash-offer` (main CTA target), `/form` (wizard, robots-blocked), `/wholesale` (buyers list), `/privacy-policy`, `/terms-of-service`, sitemap/robots/OG.
+- Routes: `/` landing, `/cash-offer` (main CTA target), `/form` (wizard, robots-blocked), `/wholesale` (buyers list), `/wholesale-listings` + `/[id]` (public listings, server-rendered, no-store), `/privacy-policy`, `/terms-of-service`, sitemap/robots/OG.
 - API calls go to `/api/*`, proxied by a `next.config.ts` rewrite to `NEXT_PUBLIC_API_URL`.
 
 ## Current state
@@ -25,3 +25,6 @@ Open items: compress `public/images` (about 19 MB of PNG), remove `unoptimized` 
 
 ## Last updated
 2026-10-14 — cleanup: sitemap adds /wholesale, robots path fixed, unused assets and dev image hosts removed, API URL made mandatory in production.
+
+## Wholesale listings (branch feat/wholesale-listings, 2026-10-16, uncommitted)
+- Data from `/api/wholesale-listings/public` via `src/lib/wholesale-listings.ts`; nav item 'Listings' and sitemap entry added. YouTube/Vimeo links are embedded. Detail page has an 'I'm interested' form (AVAILABLE listings only).
