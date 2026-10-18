@@ -28,9 +28,43 @@ export async function generateMetadata({
     return { title: "Listing not found | Wisco Home Buyer" };
   }
 
+  const description =
+    `${formatPrice(listing.price)} · ${listing.city}, ${listing.state}. ${listing.description}`.slice(
+      0,
+      200,
+    );
+  const [cover] = listing.images;
+  const images = cover
+    ? [{ url: resolveAssetUrl(cover), alt: listing.title }]
+    : undefined;
+
+  // Metadata is merged shallowly, so openGraph/twitter must be complete here
+  // or the site-wide default image would be dropped or kept by accident.
   return {
     title: `${listing.title} | Wholesale Listing`,
-    description: listing.description.slice(0, 160),
+    description,
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: "Wisco Home Buyer",
+      url: `/wholesale-listings/${listing.id}`,
+      title: listing.title,
+      description,
+      images: images ?? [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Wisco Home Buyer",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: listing.title,
+      description,
+      images: images?.map((image) => image.url) ?? ["/og-image.jpg"],
+    },
   };
 }
 

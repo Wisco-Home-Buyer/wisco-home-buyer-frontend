@@ -31,3 +31,6 @@ Open items: compress `public/images` (about 19 MB of PNG), remove `unoptimized` 
 
 ## Listing video player (branch feat/listing-video-upload, 2026-10-16)
 - Listing detail plays videos uploaded through the dashboard with a native `<video>` (URL `video-<uuid>.mp4|mov|webm`); older YouTube/Vimeo links still embed. Needs the server upload endpoint and the dashboard change.
+
+## Share preview (branch feat/listing-share-preview, 2026-10-19)
+- `/wholesale-listings/[id]` sets full `openGraph`/`twitter` metadata (first photo as image, listing title, price and city in the description). Next merges metadata shallowly, so the whole openGraph object is defined there. Falls back to `/og-image.jpg` when a listing has no photos. Link previews cache on Facebook/Messenger/SMS: use the Facebook Sharing Debugger to refresh. Big original photos may be skipped by some apps, re-upload them so they are converted to WebP.
