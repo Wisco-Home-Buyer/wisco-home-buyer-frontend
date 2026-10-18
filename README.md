@@ -22,7 +22,7 @@ join the Buyers List and browse wholesale listings. Backend:
 | `/form` | 8-step seller intake wizard |
 | `/wholesale` | Buyers List signup |
 | `/wholesale-listings` | Public wholesale listings (server-rendered, always fresh) |
-| `/wholesale-listings/[id]` | Listing detail: photo gallery with popup, video player (uploaded files; older YouTube/Vimeo links still embed), "I'm interested" form (available listings) |
+| `/wholesale-listings/[id]` | Listing detail: photo gallery with popup, video player (uploaded files; older YouTube/Vimeo links still embed), "I'm interested" form (available listings); shared links preview the first photo and the listing title (Open Graph / Twitter tags) |
 | `/privacy-policy`, `/terms-of-service` | Legal |
 
 Listings come from `GET /api/wholesale-listings/public`. Only listings marked
