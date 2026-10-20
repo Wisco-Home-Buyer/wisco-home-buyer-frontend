@@ -44,7 +44,7 @@ export function InterestForm({ listingId }: { listingId: string }) {
       setError(
         apiError?.data?.error?.details?.[0]?.message ??
           apiError?.data?.message ??
-          "Something went wrong. Please try again."
+          "Something went wrong. Please try again.",
       );
     }
   };
@@ -52,7 +52,9 @@ export function InterestForm({ listingId }: { listingId: string }) {
   if (isSubmitted) {
     return (
       <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-5 space-y-1">
-        <p className="font-bold text-emerald-800">Thanks, we got your request.</p>
+        <p className="font-bold text-emerald-800">
+          Thanks, we got your request.
+        </p>
         <p className="text-sm text-emerald-700 font-medium">
           We&apos;ll be in touch shortly about this property.
         </p>
@@ -65,7 +67,9 @@ export function InterestForm({ listingId }: { listingId: string }) {
       onSubmit={handleSubmit}
       className="bg-slate-50 border border-gray-100 rounded-2xl p-5 space-y-3"
     >
-      <p className="font-bold text-[#0B2545]">I&apos;m interested in this deal</p>
+      <p className="font-bold text-[#0B2545]">
+        I&apos;m interested in this deal
+      </p>
 
       <input
         required

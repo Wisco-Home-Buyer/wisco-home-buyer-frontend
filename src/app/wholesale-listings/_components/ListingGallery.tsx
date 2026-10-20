@@ -2,7 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
-import { resolveAssetUrl } from "@/lib/wholesale-listings";
+import { photoUrl } from "@/lib/wholesale-listings";
+
+/** Photos shown on the page before the "+N more" tile; the rest open in the viewer. */
+const VISIBLE_PHOTOS = 4;
 
 interface ListingGalleryProps {
   images: string[];
@@ -12,18 +15,16 @@ interface ListingGalleryProps {
 export function ListingGallery({ images, title }: ListingGalleryProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const urls = images.map(resolveAssetUrl);
+  const urls = images;
   const isOpen = openIndex !== null && urls[openIndex] !== undefined;
 
   const step = useCallback(
     (delta: number) => {
       setOpenIndex((current) =>
-        current === null
-          ? null
-          : (current + delta + urls.length) % urls.length
+        current === null ? null : (current + delta + urls.length) % urls.length,
       );
     },
-    [urls.length]
+    [urls.length],
   );
 
   useEffect(() => {
@@ -64,31 +65,48 @@ export function ListingGallery({ images, title }: ListingGalleryProps) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={urls[0]}
+          src={photoUrl(urls[0], 1200)}
           alt={title}
+          fetchPriority="high"
+          decoding="async"
           className="w-full aspect-4/3 object-cover rounded-2xl md:rounded-3xl bg-slate-100"
         />
       </button>
 
       {urls.length > 1 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {urls.slice(1).map((url, index) => (
-            <button
-              key={url}
-              type="button"
-              onClick={() => setOpenIndex(index + 1)}
-              aria-label={`View photo ${index + 2} larger`}
-              className="block cursor-zoom-in"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={url}
-                alt={`${title} photo ${index + 2}`}
-                loading="lazy"
-                className="w-full aspect-4/3 object-cover rounded-xl bg-slate-100"
-              />
-            </button>
-          ))}
+          {urls.slice(1, VISIBLE_PHOTOS).map((url, index) => {
+            const isLastVisible =
+              index === VISIBLE_PHOTOS - 2 && urls.length > VISIBLE_PHOTOS;
+            const hidden = urls.length - VISIBLE_PHOTOS;
+            return (
+              <button
+                key={url}
+                type="button"
+                onClick={() => setOpenIndex(index + 1)}
+                aria-label={
+                  isLastVisible
+                    ? `View all ${urls.length} photos`
+                    : `View photo ${index + 2} larger`
+                }
+                className="relative block cursor-zoom-in"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photoUrl(url, 400)}
+                  alt={`${title} photo ${index + 2}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full aspect-4/3 object-cover rounded-xl bg-slate-100"
+                />
+                {isLastVisible && (
+                  <span className="absolute inset-0 flex items-center justify-center rounded-xl bg-slate-950/60 text-white text-sm font-extrabold">
+                    +{hidden} more photos
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
 
@@ -139,7 +157,7 @@ export function ListingGallery({ images, title }: ListingGalleryProps) {
 
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={urls[openIndex]}
+            src={photoUrl(urls[openIndex], 1600)}
             alt={`${title} photo ${openIndex + 1}`}
             onClick={(event) => event.stopPropagation()}
             className="max-w-full max-h-[90vh] object-contain rounded-xl"
