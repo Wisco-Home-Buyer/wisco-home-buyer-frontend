@@ -73,6 +73,25 @@ export function resolveAssetUrl(url: string): string {
   return `${API_ORIGIN}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
+const OWN_PHOTO = /^\/(?:uploads\/)?([0-9a-f-]{36}\.(?:jpe?g|png|webp|heic|heif|gif|tiff?|avif|bmp))$/i;
+
+/**
+ * A smaller copy of an uploaded photo from the API's resize route (cached on
+ * the server), so pages do not download 6-12 MB originals. Links to other
+ * hosts are returned unchanged.
+ */
+export function photoUrl(
+  url: string,
+  width: 400 | 800 | 1200 | 1600,
+  format: "webp" | "jpg" = "webp"
+): string {
+  const absolute = resolveAssetUrl(url);
+  if (!absolute.startsWith(`${API_ORIGIN}/`)) return absolute;
+  const match = absolute.slice(API_ORIGIN.length).split("?")[0].match(OWN_PHOTO);
+  if (!match) return absolute;
+  return `${API_ORIGIN}/api/images/${match[1]}?w=${width}&fmt=${format}`;
+}
+
 export function formatPrice(price: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",

@@ -5,6 +5,7 @@ import {
   fetchPublicListing,
   formatPrice,
   isUploadedVideo,
+  photoUrl,
   resolveAssetUrl,
   STATUS_LABELS,
   toEmbedUrl,
@@ -35,7 +36,7 @@ export async function generateMetadata({
     );
   const [cover] = listing.images;
   const images = cover
-    ? [{ url: resolveAssetUrl(cover), alt: listing.title }]
+    ? [{ url: photoUrl(cover, 1200, "jpg"), alt: listing.title }]
     : undefined;
 
   // Metadata is merged shallowly, so openGraph/twitter must be complete here
@@ -98,7 +99,30 @@ export default async function WholesaleListingPage({
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-7 space-y-4">
+          <div className="space-y-5 lg:col-start-8 lg:col-span-5 lg:row-start-1">
+            <span className="inline-block px-2.5 py-1 rounded-full bg-slate-50 border border-gray-100 text-[11px] font-bold text-gray-600">
+              {STATUS_LABELS[listing.status]}
+            </span>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B2545] tracking-tight leading-tight">
+              {listing.title}
+            </h1>
+            <p className="text-3xl font-extrabold text-blue-950">
+              {formatPrice(listing.price)}
+            </p>
+            <p className="text-sm text-gray-500 font-medium">
+              {listing.street}, {listing.city}, {listing.state} {listing.zip}
+            </p>
+            {facts.length > 0 && (
+              <p className="text-sm font-semibold text-gray-600">
+                {facts.join(" · ")}
+              </p>
+            )}
+            <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed whitespace-pre-line">
+              {listing.description}
+            </p>
+          </div>
+
+          <div className="space-y-4 lg:col-start-1 lg:col-span-7 lg:row-start-1 lg:row-span-2">
             <ListingGallery images={listing.images} title={listing.title} />
 
             {isUploadedVideo(listing.videoUrl) && listing.videoUrl ? (
@@ -134,28 +158,7 @@ export default async function WholesaleListingPage({
             ) : null}
           </div>
 
-          <div className="lg:col-span-5 space-y-5 lg:sticky lg:top-32">
-            <span className="inline-block px-2.5 py-1 rounded-full bg-slate-50 border border-gray-100 text-[11px] font-bold text-gray-600">
-              {STATUS_LABELS[listing.status]}
-            </span>
-            <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B2545] tracking-tight leading-tight">
-              {listing.title}
-            </h1>
-            <p className="text-3xl font-extrabold text-blue-950">
-              {formatPrice(listing.price)}
-            </p>
-            <p className="text-sm text-gray-500 font-medium">
-              {listing.street}, {listing.city}, {listing.state} {listing.zip}
-            </p>
-            {facts.length > 0 && (
-              <p className="text-sm font-semibold text-gray-600">
-                {facts.join(" · ")}
-              </p>
-            )}
-            <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed whitespace-pre-line">
-              {listing.description}
-            </p>
-
+          <div className="space-y-5 lg:col-start-8 lg:col-span-5 lg:row-start-2">
             {listing.status === "AVAILABLE" && (
               <InterestForm listingId={listing.id} />
             )}

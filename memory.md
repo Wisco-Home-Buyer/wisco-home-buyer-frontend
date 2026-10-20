@@ -34,3 +34,6 @@ Open items: compress `public/images` (about 19 MB of PNG), remove `unoptimized` 
 
 ## Share preview (branch feat/listing-share-preview, 2026-10-19)
 - `/wholesale-listings/[id]` sets full `openGraph`/`twitter` metadata (first photo as image, listing title, price and city in the description). Next merges metadata shallowly, so the whole openGraph object is defined there. Falls back to `/og-image.jpg` when a listing has no photos. Link previews cache on Facebook/Messenger/SMS: use the Facebook Sharing Debugger to refresh. Big original photos may be skipped by some apps, re-upload them so they are converted to WebP.
+
+## Listing image sizes (branch feat/listing-image-sizes, 2026-10-21)
+- `photoUrl(url, width, format)` in `src/lib/wholesale-listings.ts` points our own uploads at the API resize route `/api/images/<file>?w=&fmt=` (needs server PRs #30/#31 deployed first; other hosts are left unchanged). Cards use 800, gallery 1200 (lightbox 1600), thumbnails 400, og:image 1200 JPEG (Facebook ignored an 11 MB original, so there was no preview). Detail page shows 4 photos + '+N more photos'; mobile order: details, photos, interest form (grid placement on lg). Facebook caches failed previews: re-scrape in the Sharing Debugger.

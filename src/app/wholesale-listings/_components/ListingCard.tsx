@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   formatPrice,
-  resolveAssetUrl,
+  photoUrl,
   STATUS_LABELS,
   type PublicWholesaleListing,
 } from "@/lib/wholesale-listings";
@@ -31,9 +31,10 @@ export function ListingCard({ listing }: { listing: PublicWholesaleListing }) {
         {cover ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={resolveAssetUrl(cover)}
+            src={photoUrl(cover, 800)}
             alt={listing.title}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
           />
         ) : (
