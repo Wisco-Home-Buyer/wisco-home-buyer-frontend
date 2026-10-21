@@ -10,36 +10,22 @@ export function Footer() {
         {/* Top Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-8 md:pb-12">
           {/* Column 1: Logo & Info */}
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Link href="/" className="inline-block">
-                <Image
-                  src="/images/logoFooter.png"
-                  alt="Wisco Home Buyer Logo"
-                  width={130}
-                  height={120}
-                  priority
-                  unoptimized
-                  className="object-contain brightness-0 invert"
-                />
-              </Link>
-              <p className="text-xs md:text-sm text-slate-400 max-w-xs leading-relaxed">
-                Wisconsin&apos;s #1 Cash Home Buyer. Fast, fair, and stress-free
-                since 2012.
-              </p>
-            </div>
-            <div className="pt-1">
-              <div className="inline-flex items-center gap-2 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-xs font-bold text-slate-300">
-                <Image
-                  src="/images/Accredited.svg"
-                  alt="BBB Accredited"
-                  width={16}
-                  height={16}
-                  className="brightness-0 invert"
-                />
-                <span>BBB Accredited Business</span>
-              </div>
-            </div>
+          <div className="space-y-2">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/images/logoFooter.png"
+                alt="Wisco Home Buyer Logo"
+                width={130}
+                height={120}
+                priority
+                unoptimized
+                className="object-contain brightness-0 invert"
+              />
+            </Link>
+            <p className="text-xs md:text-sm text-slate-400 max-w-xs leading-relaxed">
+              Wisconsin&apos;s #1 Cash Home Buyer. Fast, fair, and stress-free
+              since 2012.
+            </p>
           </div>
 
           {/* Company & Contact Side-by-Side on Mobile */}

@@ -156,16 +156,6 @@ export function Hero() {
             </div>
             <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-gray-700 shadow-sm border border-gray-100">
               <Image
-                src="/images/Accredited.svg"
-                alt=""
-                width={16}
-                height={16}
-                className="w-auto h-auto"
-              />
-              BBB Accredited
-            </div>
-            <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-gray-700 shadow-sm border border-gray-100">
-              <Image
                 src="/images/Homes-Sold.svg"
                 alt=""
                 width={16}
